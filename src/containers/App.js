@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Services } from './Services';
-import ServiceList from "./ServiceList";
-import Searchbox from "./Searchbox";
+import { Services } from '../Services';
+import ServiceList from "../components/ServiceList";
+import Searchbox from "../components/Searchbox";
 
 class App extends Component {
     constructor()
@@ -21,12 +21,20 @@ class App extends Component {
         const searchedServices=this.state.services.filter((service)=>{
             return service.service.toLowerCase().includes(this.state.searchField.toLowerCase());
         })
-        return (
-            <div className="tc">
-                <Searchbox onSearchChange={this.onSearchChange}/>
-                <ServiceList services={searchedServices} />
-            </div>
-        );
+        if(this.state.services.length===0)
+        {
+            return <h1>Loading</h1>
+        }
+        else
+        {
+            return (
+                <div className="tc">
+                    <Searchbox onSearchChange={this.onSearchChange}/>
+                    <ServiceList services={searchedServices} />
+                </div>
+            );
+        }
+        
     }
 }
 

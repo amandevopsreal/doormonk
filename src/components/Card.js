@@ -3,7 +3,7 @@ import './Card.css';
 const Card = ({ link, service }) => {
     return (
         <div className="tc bg-white dib br3 pa3 ma2 grow bw2 shadow-5">
-            <img alt="image" src={`${link}`} />
+            <img alt="loading" src={`${link}`} />
             <div>
                 <p>{service}</p>
             </div>
