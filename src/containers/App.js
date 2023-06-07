@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Services } from '../Services';
 import ServiceList from "../components/ServiceList";
 import Searchbox from "../components/Searchbox";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 class App extends Component {
     constructor()
@@ -30,7 +31,9 @@ class App extends Component {
             return (
                 <div className="tc">
                     <Searchbox onSearchChange={this.onSearchChange}/>
-                    <ServiceList services={searchedServices} />
+                    <ErrorBoundary>
+                    <ServiceList services={searchedServices}/>
+                    </ErrorBoundary>
                 </div>
             );
         }
