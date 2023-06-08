@@ -1,10 +1,17 @@
 import React from "react";
+import "./Searchbox.css";
 
-
-const Searchbox = ({onSearchChange}) => {
+const Searchbox = ({ onSearchChange }) => {
   return (
-    <div className="pa2">
-    <input onChange={onSearchChange} className="pa3 ba b--black bg-white" type="search" placeholder="search services"/>
+    <div>
+      <p className="f3 white">Schedule your grooming, on demand.</p>
+      <div className="center">
+        <div className="form pa4 br3 shadow-5 center">
+        <input onChange={onSearchChange} className="f4 pa2 w-70 center" type="search" placeholder="search services" />
+        </div>
+      </div>
+
+
     </div>
   );
 }
