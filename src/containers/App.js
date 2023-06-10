@@ -4,6 +4,8 @@ import ServiceList from "../components/ServiceList";
 import Searchbox from "../components/Searchbox";
 import ErrorBoundary from "../components/ErrorBoundary";
 import Navigation from "../components/Navigation/Navigation";
+import Login from "../components/Signup/Login";
+import Signup from "../components/Signup/Signup";
 import Logo from "../components/Logo/Logo";
 import "./App.css";
 import Footer from "../components/Footer/Footer";
@@ -13,11 +15,24 @@ class App extends Component {
         this.state = {
             searchField: '',
             services: Services,
+            route: "login",
+            isSignedIn:false,
         }
     }
     onSearchChange = (event) => {
         this.setState({ searchField: event.target.value });
 
+    }
+    onRouteChange = (route) => {
+        if(route==="login")
+        {
+            this.setState({isSignedIn:false})
+        }
+        else if(route==="home")
+        {
+            this.setState({isSignedIn:true})
+        }
+        this.setState({ route: route });
     }
     render() {
 
@@ -30,16 +45,31 @@ class App extends Component {
         else {
             return (
                 <div className="tc">
-                    <div>
-                    <Navigation />
-                    <Logo/>
-                    <Searchbox onSearchChange={this.onSearchChange} />
-                    <ErrorBoundary>
-                        <ServiceList services={searchedServices} />
-                    </ErrorBoundary>
-                    </div>
-                    <Footer/>
-                </div>
+                    <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
+
+                    {this.state.route === "home" ?
+                        <>
+                            <Logo />
+                            <Searchbox onSearchChange={this.onSearchChange} />
+                            <ErrorBoundary>
+                                <ServiceList services={searchedServices} />
+                            </ErrorBoundary>
+                        </>
+                        :
+                        (this.state.route === "login" ?
+                            <>
+                                <Login onRouteChange={this.onRouteChange} />
+                            </> :
+                            <>
+                                <Signup onRouteChange={this.onRouteChange} />
+                            </>
+
+                        )
+
+
+                    }
+                    <Footer />
+                </div >
             );
         }
 
