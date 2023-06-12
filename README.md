@@ -5,7 +5,7 @@ Welcome to Doormonk, an online haircut booking web application built using the M
 ## Features
 
 - **User Registration and Authentication:** Users can create accounts, log in securely, and manage their profiles.
-- **Search and Filter:** Users can easily search for salons or barbershops based on location, services offered, and availability.
+- **Search and Filter:** Users can easily search for services.
 - **Appointment Booking:** Users can select a preferred salon or barber, choose a desired date and time, and book an appointment.
 - **Reviews and Ratings:** Users can rate and write reviews for salons or barbershops they have visited.
 - **Salon/Barber Dashboard:** Salons or barbershops can access a dedicated dashboard where they can manage their availability, view bookings, and update their profile information.
