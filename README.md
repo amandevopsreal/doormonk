@@ -1,72 +1,73 @@
-# Getting Started with Create React App
+Doormonk: Online Haircut Booking Web App
+Welcome to Doormonk, an online haircut booking web application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. Doormonk provides users with a convenient way to schedule appointments with hair salons and barbershops, right from the comfort of their devices.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Features
+User Registration and Authentication: Users can create accounts, log in securely, and manage their profiles.
+Search and Filter: Users can easily search for salons or barbershops based on location, services offered, and availability.
+Appointment Booking: Users can select a preferred salon or barber, choose a desired date and time, and book an appointment.
+Reviews and Ratings: Users can rate and write reviews for salons or barbershops they have visited.
+Salon/Barber Dashboard: Salons or barbershops can access a dedicated dashboard where they can manage their availability, view bookings, and update their profile information.
+Prerequisites
+Before running Doormonk, ensure that you have the following installed:
 
-## Available Scripts
+Node.js (v12 or later)
+MongoDB
+Getting Started
+To get started with Doormonk, follow the steps below:
 
-In the project directory, you can run:
+Clone the repository:
 
-### `npm start`
+bash
+git clone <repository-url>
+Install dependencies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+bash
+cd doormonk
+npm install
+Set up environment variables:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Create a .env file in the root directory of the project.
 
-### `npm test`
+Define the following environment variables in the .env file:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+makefile
+PORT=<server-port>
+MONGODB_URI=<mongodb-connection-string>
+JWT_SECRET=<jwt-secret-key>
+Run the application:
 
-### `npm run build`
+sql
+npm start
+The Doormonk server will start running on the specified port, and you can access the application by visiting http://localhost:<server-port> in your web browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Directory Structure
+The project directory structure is organized as follows:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+arduino
+doormonk/
+├── client/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── pages/
+│       ├── utils/
+│       ├── App.js
+│       └── index.js
+├── server/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   ├── app.js
+│   └── server.js
+└── README.md
+The client/ directory contains the front-end React code.
+The server/ directory contains the back-end Node.js and Express.js code.
+Contributing
+Contributions to Doormonk are welcome. If you encounter any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+License
+Doormonk is licensed under the MIT License.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# doormonk" 
-"# doormonk" 
+Acknowledgements
+This project was developed with the support of various resources and tutorials. We would like to express our gratitude to the tutorial contributors and the open-source community for their invaluable contributions.
