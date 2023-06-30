@@ -4,7 +4,7 @@ import ServiceList from "../components/ServiceList";
 import Searchbox from "../components/Searchbox";
 import ErrorBoundary from "../components/ErrorBoundary";
 import Navigation from "../components/Navigation/Navigation";
-import Login from "../components/Signup/Login";
+import Login from "../components/Login/Login";
 import Signup from "../components/Signup/Signup";
 import Logo from "../components/Logo/Logo";
 import "./App.css";
@@ -16,23 +16,38 @@ class App extends Component {
             searchField: '',
             services: Services,
             route: "login",
-            isSignedIn:false,
+            isSignedIn: false,
+            user: {
+                id: "",
+                name: "",
+                email: "",
+                joined: ''
+            }
         }
     }
+
     onSearchChange = (event) => {
         this.setState({ searchField: event.target.value });
 
     }
     onRouteChange = (route) => {
-        if(route==="login")
-        {
-            this.setState({isSignedIn:false})
+        if (route === "login") {
+            this.setState({ isSignedIn: false })
         }
-        else if(route==="home")
-        {
-            this.setState({isSignedIn:true})
+        else if (route === "home") {
+            this.setState({ isSignedIn: true })
         }
         this.setState({ route: route });
+    }
+    loadUser = (data) => {
+        this.setState({
+            user: {
+                id: data.id,
+                name: data.name,
+                email: data.email,
+                joined: data.joined
+            }
+        })
     }
     render() {
 
@@ -58,10 +73,10 @@ class App extends Component {
                         :
                         (this.state.route === "login" ?
                             <>
-                                <Login onRouteChange={this.onRouteChange} />
+                                <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
                             </> :
                             <>
-                                <Signup onRouteChange={this.onRouteChange} />
+                                <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
                             </>
 
                         )

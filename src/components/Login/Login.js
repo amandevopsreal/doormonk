@@ -1,40 +1,35 @@
 import React, { Component } from "react";
-import '../Login/Login.css'
+import "./Login.css"
+import userEvent from "@testing-library/user-event";
 
-class Signup extends Component {
+class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: "",
-            password: "",
-            name: ""
+            signInEmail: "",
+            signInPassword: ""
         }
     }
     onEmailChange = (event) => {
-        this.setState({ email: event.target.value });
-        console.log(this.state.email);
+        this.setState({ signInEmail: event.target.value });
+        console.log(this.state.signInEmail);
     }
     onPasswordChange = (event) => {
-        this.setState({ password: event.target.value });
-        console.log(this.state.password);
+        this.setState({ signInPassword: event.target.value });
+        console.log(this.state.signInPassword);
     }
-    onNameChange = (event) => {
-        this.setState({ name: event.target.value });
-        console.log(this.state.name);
-    }
-    onSubmitSignUp = () => {
-        fetch("http://localhost:3000/register", {
+    onSubmitLogIn = () => {
+        fetch("http://localhost:3000/signin", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password,
-                name:this.state.name,
+                email: this.state.signInEmail,
+                password: this.state.signInPassword
             })
         })
             .then(response => response.json())
             .then(user => {
-                if (user) {
+                if (user.id) {
                     this.props.loadUser(user);
                     this.props.onRouteChange("home");
                 }
@@ -47,11 +42,7 @@ class Signup extends Component {
                 <main className="pa4 black-80">
                     <div className="measure">
                         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-                            <legend className="f1 white fw6 ph0 mh0">Signup</legend>
-                            <div className="mt3">
-                                <label className="db white fw6 lh-copy f6" htmlFor="name">Name</label>
-                                <input onChange={this.onNameChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="name" id="name" />
-                            </div>
+                            <legend className="f1 white fw6 ph0 mh0">Login</legend>
                             <div className="mt3">
                                 <label className="db white fw6 lh-copy f6" htmlFor="email-address">Email</label>
                                 <input onChange={this.onEmailChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address" id="email-address" />
@@ -62,7 +53,10 @@ class Signup extends Component {
                             </div>
                         </fieldset>
                         <div className="">
-                            <input onClick={this.onSubmitSignUp} className="b ph3 pv2 white input-reset ba b--white bg-transparent grow pointer f6 dib" type="submit" value="Signup" />
+                            <input onClick={this.onSubmitLogIn} className="b ph3 pv2 white input-reset ba b--white bg-transparent grow pointer f6 dib" type="submit" value="Login" />
+                        </div>
+                        <div className="lh-copy mt3">
+                            <p onClick={() => this.props.onRouteChange("signup")} className="pointer f6 white link dim black db">Sign up</p>
                         </div>
                     </div>
                 </main>
@@ -72,4 +66,4 @@ class Signup extends Component {
 
 }
 
-export default Signup;
+export default Login;

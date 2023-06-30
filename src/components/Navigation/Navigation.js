@@ -31,7 +31,7 @@ const Navigation = ({ onRouteChange, isSignedIn }) => {
                 </div>
                 <div className="dropdown_menu">
                     <li><a href="#">Register as Barber</a></li>
-                    <li><a onClick={() => onRouteChange("login")} href="#">Sign out</a></li>
+                    <li><a onClick={() => onRouteChange("login")} href="#">Log out</a></li>
                 </div>
             </header>
         );
@@ -51,7 +51,7 @@ const Navigation = ({ onRouteChange, isSignedIn }) => {
 
                 </div>
                 <div className="dropdown_menu">
-                    <li><a onClick={() => onRouteChange("login")} href="#">Sign in</a></li>
+                    <li><a onClick={() => onRouteChange("login")} href="#">Log in</a></li>
                     <li><a onClick={() => onRouteChange("signup")} href="#">Sign up</a></li>
                 </div>
             </header>
