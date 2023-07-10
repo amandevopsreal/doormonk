@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Login.css"
-import userEvent from "@testing-library/user-event";
 
 class Login extends Component {
     constructor(props) {
@@ -12,14 +11,12 @@ class Login extends Component {
     }
     onEmailChange = (event) => {
         this.setState({ signInEmail: event.target.value });
-        console.log(this.state.signInEmail);
     }
     onPasswordChange = (event) => {
         this.setState({ signInPassword: event.target.value });
-        console.log(this.state.signInPassword);
     }
     onSubmitLogIn = () => {
-        fetch("http://localhost:3000/signin", {
+        fetch("https://doormonk-server.onrender.com/signin", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

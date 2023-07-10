@@ -12,18 +12,15 @@ class Signup extends Component {
     }
     onEmailChange = (event) => {
         this.setState({ email: event.target.value });
-        console.log(this.state.email);
     }
     onPasswordChange = (event) => {
         this.setState({ password: event.target.value });
-        console.log(this.state.password);
     }
     onNameChange = (event) => {
         this.setState({ name: event.target.value });
-        console.log(this.state.name);
     }
     onSubmitSignUp = () => {
-        fetch("http://localhost:3000/register", {
+        fetch("https://doormonk-server.onrender.com/register", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
