@@ -26,12 +26,12 @@ class Signup extends Component {
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password,
-                name:this.state.name,
+                name: this.state.name,
             })
         })
             .then(response => response.json())
             .then(user => {
-                if (user) {
+                if (user.id) {
                     this.props.loadUser(user);
                     this.props.onRouteChange("home");
                 }
