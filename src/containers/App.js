@@ -9,13 +9,17 @@ import Signup from "../components/Signup/Signup";
 import Logo from "../components/Logo/Logo";
 import "./App.css";
 import Footer from "../components/Footer/Footer";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route
+} from "react-router-dom";
 class App extends Component {
     constructor() {
         super();
         this.state = {
             searchField: '',
             services: Services,
-            route: "login",
             isSignedIn: false,
             user: {
                 id: "",
@@ -37,7 +41,6 @@ class App extends Component {
         else if (route === "home") {
             this.setState({ isSignedIn: true })
         }
-        this.setState({ route: route });
     }
     loadUser = (data) => {
         this.setState({
@@ -59,32 +62,25 @@ class App extends Component {
         }
         else {
             return (
-                <div className="tc">
-                    <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
-
-                    {this.state.route === "home" ?
-                        <>
-                            <Logo />
-                            <Searchbox onSearchChange={this.onSearchChange} />
-                            <ErrorBoundary>
-                                <ServiceList services={searchedServices} />
-                            </ErrorBoundary>
-                        </>
-                        :
-                        (this.state.route === "login" ?
-                            <>
-                                <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
-                            </> :
-                            <>
-                                <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
-                            </>
-
-                        )
+                <Router>
+                    <div className="tc">
+                        <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
 
 
-                    }
-                    <Footer />
-                </div >
+                        <Routes>
+                            <Route path='/' element={<Login loadUser={this.loadUser} onRouteChange={this.onRouteChange} />} />
+                            <Route path='/signup' element={<Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} />} />
+                            <Route path='/home' element={<>
+                                <Logo />
+                                <Searchbox onSearchChange={this.onSearchChange} />
+                                <ErrorBoundary>
+                                    <ServiceList services={searchedServices} />
+                                </ErrorBoundary></>} />
+
+                        </Routes>
+                        <Footer />
+                    </div >
+                </Router>
             );
         }
 
