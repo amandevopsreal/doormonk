@@ -9,6 +9,11 @@ import Signup from "../components/Signup/Signup";
 import Logo from "../components/Logo/Logo";
 import "./App.css";
 import Footer from "../components/Footer/Footer";
+import Barberlogin from "../barbercomps/Barberlogin/Barberlogin";
+import Barberregister from "../barbercomps/Barberregister/Barberregister";
+import NavigationBP from "../components/Navigation/NavigationBP";
+import NavigationCS from "../components/Navigation/NavigationCS";
+
 import {
     BrowserRouter as Router,
     Routes,
@@ -20,7 +25,6 @@ class App extends Component {
         this.state = {
             searchField: '',
             services: Services,
-            isSignedIn: false,
             user: {
                 id: "",
                 name: "",
@@ -33,14 +37,6 @@ class App extends Component {
     onSearchChange = (event) => {
         this.setState({ searchField: event.target.value });
 
-    }
-    onRouteChange = (route) => {
-        if (route === "login") {
-            this.setState({ isSignedIn: false })
-        }
-        else if (route === "home") {
-            this.setState({ isSignedIn: true })
-        }
     }
     loadUser = (data) => {
         this.setState({
@@ -64,13 +60,19 @@ class App extends Component {
             return (
                 <Router>
                     <div className="tc">
-                        <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
+
 
 
                         <Routes>
-                            <Route path='/' element={<Login loadUser={this.loadUser} onRouteChange={this.onRouteChange} />} />
-                            <Route path='/signup' element={<Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} />} />
+                            <Route path='/' element={<><Navigation />
+                                <Login loadUser={this.loadUser} /></>} />
+                            <Route path='/signin' element={<><Navigation /><Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /></>} />
+                            <Route path='/barberlogin' element={<><NavigationBP /><Barberlogin /></>} />
+                            <Route path='/barberregister' element={<><NavigationBP /><Barberregister /></>} />
+
+
                             <Route path='/home' element={<>
+                                <NavigationCS />
                                 <Logo />
                                 <Searchbox onSearchChange={this.onSearchChange} />
                                 <ErrorBoundary>

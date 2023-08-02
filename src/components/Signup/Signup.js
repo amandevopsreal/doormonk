@@ -18,8 +18,8 @@ const Signup = ({ loadUser, onRouteChange }) => {
     const handleClick = () => {
         navigate("/home");
     }
-    const onSubmitSignUp = () => {
-        fetch("https://doormonk-server.onrender.com/register", {
+    const onSubmitSignUp = async () => {
+        const response = await fetch("http://localhost:5000/api/auth/createuser", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -28,15 +28,24 @@ const Signup = ({ loadUser, onRouteChange }) => {
                 name: name,
             })
         })
-            .then(response => response.json())
-            .then(user => {
-                if (user.id) {
-                    loadUser(user);
-                    onRouteChange("home");
-                    handleClick()
+        const json = await response.json()
+        console.log(json)
+        if (json.success) {
+            localStorage.setItem("token", json.authtoken)
+            handleClick()
 
-                }
-            })
+        }
+        else {
+            alert("Invalid Credentials")
+        }
+        /*.then(response => response.json())
+.then(user => {
+    if (user.id) {
+        loadUser(user);
+        onRouteChange("home");
+
+    }
+})*/
 
     }
     return (

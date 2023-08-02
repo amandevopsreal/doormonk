@@ -13,7 +13,7 @@ const fun = () => {
         : 'fa-solid fa-bars'
 
 }
-const Navigation = () => {
+const NavigationCS = () => {
 
 
 
@@ -22,8 +22,8 @@ const Navigation = () => {
             <div className="navbar">
                 <div className="logo"><Link to="/" >DoormonK</Link></div>
                 <ul className="links">
-                    <li><Link to="/barberlogin">Barber's Portal</Link></li>
-                    <li><Link to="/">Log in/ Sign up</Link></li>
+                    <li><Link to="#">My Bookings</Link></li>
+                    <li><Link to="/">Log out</Link></li>
                 </ul>
                 <div className="toggle_btn" onClick={fun}>
                     <i className="fa-solid fa-bars"></i>
@@ -31,8 +31,8 @@ const Navigation = () => {
 
             </div>
             <div className="dropdown_menu">
-                <li><Link to="/barberlogin">Barber's Portal</Link></li>
-                <li><Link to="/">Log in/ Sign up</Link></li>
+                <li><Link to="#">My Bookings</Link></li>
+                <li><Link to="/">Log out</Link></li>
             </div>
         </header>
     );
@@ -40,4 +40,4 @@ const Navigation = () => {
 
 }
 
-export default Navigation;
+export default NavigationCS;

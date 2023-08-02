@@ -16,27 +16,33 @@ const Login = ({ loadUser, onRouteChange }) => {
     const handleClick = () => {
         navigate("/home");
     }
-    const onSubmitLogIn = () => {
-        fetch("https://doormonk-server.onrender.com/signin", {
+    const onSubmitLogIn = async () => {
+        const response = await fetch("http://localhost:5000/api/auth/login", {
             method: "post",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                email: signInEmail,
-                password: signInPassword
-            })
+            body: JSON.stringify({ email: signInEmail, password: signInPassword })
         })
-            .then(response => response.json())
-            .then(user => {
+        const json = await response.json()
+        console.log(json)
+        if (json.success) {
+            localStorage.setItem("token", json.authtoken)
+            handleClick()
+        }
+        else {
+            alert("Invalid Credentials")
+        }
+        /*.then(response => response.json())
+        .then(user => {
 
-                if (user.id) {
-                    loadUser(user);
-                    onRouteChange("home");
+            if (user.id) {
+                loadUser(user);
+                onRouteChange("home");
 
 
 
-                    handleClick()
-                }
-            })
+                
+            }
+        })*/
 
     }
 
@@ -59,7 +65,7 @@ const Login = ({ loadUser, onRouteChange }) => {
                         <input onClick={onSubmitLogIn} className="b ph3 pv2 white input-reset ba b--white bg-transparent grow pointer f6 dib" type="submit" value="Login" />
                     </div>
                     <div className="lh-copy mt3">
-                        <Link to={"/signup"} className="pointer f6 white link dim black db">Sign up</Link>
+                        <Link to={"/signin"} className="pointer f6 white link dim black db">Sign up</Link>
                     </div>
                 </div>
             </main>
