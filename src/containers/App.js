@@ -13,7 +13,7 @@ import Barberlogin from "../barbercomps/Barberlogin/Barberlogin";
 import Barberregister from "../barbercomps/Barberregister/Barberregister";
 import NavigationBP from "../components/Navigation/NavigationBP";
 import NavigationCS from "../components/Navigation/NavigationCS";
-
+import Shops from "../components/Shops";
 import {
     BrowserRouter as Router,
     Routes,
@@ -78,6 +78,9 @@ class App extends Component {
                                 <ErrorBoundary>
                                     <ServiceList services={searchedServices} />
                                 </ErrorBoundary></>} />
+                            <Route path='/searchshops' element={<>
+                                <NavigationCS />
+                                <Shops /></>} />
 
                         </Routes>
                         <Footer />
