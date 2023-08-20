@@ -9,9 +9,35 @@ const Shops = () => {
                     input: {
                         backgroundColor: 'transparent',
                         border: '1px solid white',
-                    }
+                    },
+                    '&:hover fieldset': {
+                        color: "white",
+                        border: '1px solid white!important',
+                        borderRadius: 0,
+                    },
+                    '&:focus-within fieldset, &:focus-visible fieldset': {
+                        color: "white",
+                        border: '1px solid white!important',
+                    },
 
-                }} id="outlined-search" label="Search city" type="search" />
+                }}
+                    InputLabelProps={{
+                        sx: {
+                            color: 'white',
+                            textTransform: 'capitalize',
+                        },
+                    }} inputProps={{
+                        sx: {
+                            color: 'white',
+                            paddingLeft: '15px',
+                            fontSize: '20px',
+                        },
+                    }}
+                    FormHelperTextProps={{
+                        sx: {
+                            color: 'white',
+                        },
+                    }} id="outlined-search" label="Search city" type="search" />
 
             </div>
         </>
