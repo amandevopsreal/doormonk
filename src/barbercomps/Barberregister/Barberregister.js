@@ -70,7 +70,7 @@ const Barberregister = () => {
                             <option value>Choose...</option>
                             <option>Men</option>
                             <option>Women</option>
-                            <option>Uniex</option>
+                            <option>Unisex</option>
                         </select>
                     </div>
                     <div className="col-md-6">
@@ -96,6 +96,7 @@ const Barberregister = () => {
                             <option>Uttar Pradesh</option>
                             <option>Delhi</option>
                             <option>Bihar</option>
+                            {/*"Use map in future"*/}
                         </select>
                     </div>
                     <div className="col-md-2">
