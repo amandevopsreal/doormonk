@@ -8,7 +8,6 @@ import Login from "../components/Login/Login";
 import Signup from "../components/Signup/Signup";
 import Logo from "../components/Logo/Logo";
 import "./App.css";
-import Footer from "../components/Footer/Footer";
 import Barberlogin from "../barbercomps/Barberlogin/Barberlogin";
 import Barberregister from "../barbercomps/Barberregister/Barberregister";
 import NavigationBP from "../components/Navigation/NavigationBP";
@@ -83,7 +82,7 @@ class App extends Component {
                                 <Shops /></>} />
 
                         </Routes>
-                        <Footer />
+
                     </div >
                 </Router>
             );
