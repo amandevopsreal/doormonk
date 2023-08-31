@@ -93,9 +93,11 @@ const Barberregister = () => {
                         <label htmlFor="state" className="form-label text-light d-flex">State</label>
                         <select onChange={onChange} id="state" name='state' className="form-select">
                             <option value>Choose...</option>
+                            <option>Uttarakhand</option>
                             <option>Uttar Pradesh</option>
                             <option>Delhi</option>
                             <option>Bihar</option>
+                            <option>....</option>
                             {/*"Use map in future"*/}
                         </select>
                     </div>
