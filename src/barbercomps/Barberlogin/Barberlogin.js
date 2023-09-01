@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Barberlogin.css'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const Barberlogin = () => {
     const [barber, setBarber] = useState({
         email: "",
@@ -12,6 +13,10 @@ const Barberlogin = () => {
             [e.target.name]: e.target.value
         })
     }
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate("/barberhome");
+    }
     const onSubmitLogIn = async () => {
         const response = await fetch("http://localhost:5000/api/barberauth/loginbarber", {
             method: "post",
@@ -22,6 +27,7 @@ const Barberlogin = () => {
         console.log(json)
         if (json.success) {
             localStorage.setItem("token", json.authtoken)
+            handleClick()
         }
         else {
 

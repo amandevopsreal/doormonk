@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './Barberregister.css'
+import { useNavigate } from 'react-router-dom'
 const Barberregister = () => {
     const [barber, setBarber] = useState({
         name: "",
@@ -15,6 +16,10 @@ const Barberregister = () => {
         workinghours: "",
         zip: 0
     })
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate("/barberhome");
+    }
     const handelSubmit = async () => {
         console.log(barber)
         const response = await fetch("http://localhost:5000/api/barberauth/createbarber", {
@@ -26,7 +31,7 @@ const Barberregister = () => {
         console.log(json)
         if (json.success) {
             localStorage.setItem("token", json.authtoken)
-
+            handleClick()
         }
         else {
 

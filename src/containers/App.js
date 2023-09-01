@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Services } from '../Services';
+import { Features } from '../Services';
 import ServiceList from "../components/ServiceList";
 import Searchbox from "../components/Searchbox";
 import ErrorBoundary from "../components/ErrorBoundary";
@@ -13,6 +14,9 @@ import Barberregister from "../barbercomps/Barberregister/Barberregister";
 import NavigationBP from "../components/Navigation/NavigationBP";
 import NavigationCS from "../components/Navigation/NavigationCS";
 import Shops from "../components/Shops";
+import NavigationBhome from "../components/Navigation/NavigationBhome";
+import SearchboxB from "../barbercomps/SearchboxB";
+import BookingDetails from "../components/BookingDetails";
 import {
     BrowserRouter as Router,
     Routes,
@@ -24,6 +28,7 @@ class App extends Component {
         this.state = {
             searchField: '',
             services: Services,
+            features: Features,
             user: {
                 id: "",
                 name: "",
@@ -52,6 +57,9 @@ class App extends Component {
         const searchedServices = this.state.services.filter((service) => {
             return service.service.toLowerCase().includes(this.state.searchField.toLowerCase());
         })
+        const searchedFeatures = this.state.features.filter((feature) => {
+            return feature.service.toLowerCase().includes(this.state.searchField.toLowerCase());
+        })
         if (this.state.services.length === 0) {
             return <h1>Loading</h1>
         }
@@ -77,9 +85,18 @@ class App extends Component {
                                 <ErrorBoundary>
                                     <ServiceList services={searchedServices} />
                                 </ErrorBoundary></>} />
+                            <Route path='/barberhome' element={<>
+                                <NavigationBhome />
+                                <Logo />
+                                <SearchboxB onSearchChange={this.onSearchChange} />
+                                <ErrorBoundary>
+                                    <ServiceList services={searchedFeatures} />
+                                </ErrorBoundary></>} />
                             <Route path='/searchshops' element={<>
                                 <NavigationCS />
                                 <Shops /></>} />
+                            <Route path='/bookingdetails' element={<>
+                                <BookingDetails /></>} />
 
                         </Routes>
 

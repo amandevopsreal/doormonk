@@ -2,7 +2,20 @@ import React, { useState } from 'react'
 import "./Searchbox.css";
 import "./Shop.css"
 import ShopItem from './ShopItem';
+import BookingDetails from './BookingDetails';
+
+import { useNavigate } from 'react-router-dom'
 const Shops = () => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate("/bookingdetails");
+    }
+    const [id, setId] = useState("")
+    const onBook = (id) => {
+        console.log(id)
+        setId(id)
+        //handleClick()
+    }
     const [city, setCity] = useState("")
     const [shops, setShops] = useState([])
     const onChange = (e) => {
@@ -35,7 +48,7 @@ const Shops = () => {
                 <div className='mad center'>
                     <div style={{ width: "700px" }}>
                         {shops.length ? shops.map((shop) => {
-                            return <><ShopItem shop={shop} key={shop._id} /></>
+                            return <><ShopItem onBook={onBook} shop={shop} key={shop._id} /></>
                         })
                             : <h2 style={{ color: "white" }}>No Shops available</h2>}
                     </div>

@@ -1,7 +1,5 @@
 import React from 'react'
-import { Services } from '../Services'
-
-const ShopItem = ({ shop }) => {
+const ShopItem = ({ shop, onBook }) => {
     return (
         <>
             <div style={{ textAlign: "left" }} className="card my-3">
@@ -13,8 +11,8 @@ const ShopItem = ({ shop }) => {
                     <p className="card-text">{"Phone: " + shop.phone}</p>
                     <p className="card-text">{"Website: " + shop.website}</p>
                     <p className="card-text">{"Email: " + shop.email}</p>
-                    <p className="card-text">{"Working Hours: " + shop.workingHours}</p>
-                    <a style={{ backgroundColor: "#0d6efd", borderRadius: "0.375rem" }} href="/" className="btn btn-primary">Book</a>
+                    <p className="card-text">{"Working Hours: " + shop.workinghours}</p>
+                    <button onClick={() => onBook(shop._id)} style={{ backgroundColor: "#0d6efd", borderRadius: "0.375rem" }} className="btn btn-primary">Book</button>
                 </div>
             </div>
         </>
