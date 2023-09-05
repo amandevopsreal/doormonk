@@ -17,6 +17,7 @@ import Shops from "../components/Shops";
 import NavigationBhome from "../components/Navigation/NavigationBhome";
 import SearchboxB from "../barbercomps/SearchboxB";
 import BookingDetails from "../components/BookingDetails";
+import AppointmentState from "../context/AppointmentState";
 import {
     BrowserRouter as Router,
     Routes,
@@ -65,43 +66,47 @@ class App extends Component {
         }
         else {
             return (
-                <Router>
-                    <div className="tc">
+                <>
+                    <AppointmentState>
+                        <Router>
+                            <div className="tc">
 
 
 
-                        <Routes>
-                            <Route path='/' element={<><Navigation />
-                                <Login loadUser={this.loadUser} /></>} />
-                            <Route path='/signin' element={<><Navigation /><Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /></>} />
-                            <Route path='/barberlogin' element={<><NavigationBP /><Barberlogin /></>} />
-                            <Route path='/barberregister' element={<><NavigationBP /><Barberregister /></>} />
+                                <Routes>
+                                    <Route path='/' element={<><Navigation />
+                                        <Login loadUser={this.loadUser} /></>} />
+                                    <Route path='/signin' element={<><Navigation /><Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /></>} />
+                                    <Route path='/barberlogin' element={<><NavigationBP /><Barberlogin /></>} />
+                                    <Route path='/barberregister' element={<><NavigationBP /><Barberregister /></>} />
 
 
-                            <Route path='/home' element={<>
-                                <NavigationCS />
-                                <Logo />
-                                <Searchbox onSearchChange={this.onSearchChange} />
-                                <ErrorBoundary>
-                                    <ServiceList services={searchedServices} />
-                                </ErrorBoundary></>} />
-                            <Route path='/barberhome' element={<>
-                                <NavigationBhome />
-                                <Logo />
-                                <SearchboxB onSearchChange={this.onSearchChange} />
-                                <ErrorBoundary>
-                                    <ServiceList services={searchedFeatures} />
-                                </ErrorBoundary></>} />
-                            <Route path='/searchshops' element={<>
-                                <NavigationCS />
-                                <Shops /></>} />
-                            <Route path='/bookingdetails' element={<>
-                                <BookingDetails /></>} />
+                                    <Route path='/home' element={<>
+                                        <NavigationCS />
+                                        <Logo />
+                                        <Searchbox onSearchChange={this.onSearchChange} />
+                                        <ErrorBoundary>
+                                            <ServiceList services={searchedServices} />
+                                        </ErrorBoundary></>} />
+                                    <Route path='/barberhome' element={<>
+                                        <NavigationBhome />
+                                        <Logo />
+                                        <SearchboxB onSearchChange={this.onSearchChange} />
+                                        <ErrorBoundary>
+                                            <ServiceList services={searchedFeatures} />
+                                        </ErrorBoundary></>} />
+                                    <Route path='/searchshops' element={<>
+                                        <NavigationCS />
+                                        <Shops /></>} />
+                                    <Route path='/bookingdetails' element={<>
+                                        <BookingDetails /></>} />
 
-                        </Routes>
+                                </Routes>
 
-                    </div >
-                </Router>
+                            </div >
+                        </Router>
+                    </AppointmentState>
+                </>
             );
         }
 

@@ -2,24 +2,24 @@ import React, { useState } from 'react'
 import "./Searchbox.css";
 import "./Shop.css"
 import ShopItem from './ShopItem';
-import BookingDetails from './BookingDetails';
-
+import { useContext } from 'react'
+import AppointmentContext from '../context/appointmentContext';
 import { useNavigate } from 'react-router-dom'
 const Shops = () => {
+    const context = useContext(AppointmentContext)
+    const { setId } = context
+    const [city, setCity] = useState("")
+    const [shops, setShops] = useState([])
     const navigate = useNavigate();
     const handleClick = () => {
         navigate("/bookingdetails");
     }
-    const [id, setId] = useState("")
-    const onBook = (id) => {
-        console.log(id)
-        setId(id)
-        //handleClick()
-    }
-    const [city, setCity] = useState("")
-    const [shops, setShops] = useState([])
     const onChange = (e) => {
         setCity(e.target.value)
+    }
+    const onBook = (id) => {
+        setId(id)
+        handleClick()
     }
     const onSearch = async () => {
         const response = await fetch(`http://localhost:5000/api/shops/fetchallshops`, {

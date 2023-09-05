@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import 'C:/Users/HP/doormonk/src/barbercomps/Barberregister/Barberregister.css'
 /*import { useNavigate } from 'react-router-dom'*/
-
+import { useContext } from 'react'
+import AppointmentContext from '../context/appointmentContext';
 const BookingDetails = ({ id }) => {
     const [details, setDetails] = useState({
-        id: id,
         name: "",
         phone: "",
         services: "",
@@ -12,12 +12,14 @@ const BookingDetails = ({ id }) => {
         address: "",
         time: "",
     })
+    const context = useContext(AppointmentContext)
+    const { addAppointment } = context
     /*const navigate = useNavigate();*/
     /*const handleClick = () => {
         navigate("/barberhome");
     }*/
     const handelSubmit = async () => {
-        console.log(details.id)
+        addAppointment(details.name, details.phone, details.services, details.email, details.address, details.time)
         /*const response = await fetch("http://localhost:5000/api/barberauth/createbarber", {
             method: "post",
             headers: { "Content-Type": "application/json" },
@@ -70,8 +72,8 @@ const BookingDetails = ({ id }) => {
                         <input onChange={onChange} type="text" className="form-control" id="address" name='address' />
                     </div>
                     <div className="col-md-6">
-                        <label htmlFor="workinghours" className="d-flex form-label text-light">Time</label>
-                        <input onChange={onChange} type="text" className="form-control" id="workinghours" name="workinghours" />
+                        <label htmlFor="time" className="d-flex form-label text-light">Time</label>
+                        <input onChange={onChange} type="text" className="form-control" id="time" name="time" />
                     </div>
                     <div className="col-12">
                         <button onClick={handelSubmit} type="submit" className="btn btn-primary grow">Book</button>
