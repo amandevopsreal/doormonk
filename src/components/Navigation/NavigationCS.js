@@ -22,7 +22,7 @@ const NavigationCS = () => {
             <div className="navbar">
                 <div className="logo"><Link to="/" >DoormonK</Link></div>
                 <ul className="links">
-                    <li><Link to="#">My Bookings</Link></li>
+                    <li><Link to="/bookedappointments">My Bookings</Link></li>
                     <li><Link to="/">Log out</Link></li>
                 </ul>
                 <div className="toggle_btn" onClick={fun}>
@@ -31,7 +31,7 @@ const NavigationCS = () => {
 
             </div>
             <div className="dropdown_menu">
-                <li><Link to="#">My Bookings</Link></li>
+                <li><Link to="/bookedappointments">My Bookings</Link></li>
                 <li><Link to="/">Log out</Link></li>
             </div>
         </header>

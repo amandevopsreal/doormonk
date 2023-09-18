@@ -18,6 +18,7 @@ import NavigationBhome from "../components/Navigation/NavigationBhome";
 import SearchboxB from "../barbercomps/SearchboxB";
 import BookingDetails from "../components/BookingDetails";
 import AppointmentState from "../context/AppointmentState";
+import MyAppointments from "../components/MyAppointments";
 import {
     BrowserRouter as Router,
     Routes,
@@ -100,6 +101,8 @@ class App extends Component {
                                         <Shops /></>} />
                                     <Route path='/bookingdetails' element={<>
                                         <BookingDetails /></>} />
+                                    <Route path='/bookedappointments' element={<>
+                                        <MyAppointments /></>} />
 
                                 </Routes>
 

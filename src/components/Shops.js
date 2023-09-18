@@ -43,12 +43,16 @@ const Shops = () => {
                             <input onChange={onChange} type="text" className="form-control" placeholder="Search your City" aria-label="Recipient's username" aria-describedby="button-addon2" />
                             <button onClick={onSearch} className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
                         </div>
+                        <div className="input-group mb-3">
+                            <input className="form-control" type="time" id="appt" name="appt"></input>
+                            <input className="form-control" type="date" id="birthday" name="birthday"></input>
+                        </div>
                     </div>
                 </div>
                 <div className='mad center'>
                     <div style={{ width: "700px" }}>
                         {shops.length ? shops.map((shop) => {
-                            return <><ShopItem onBook={onBook} shop={shop} key={shop._id} /></>
+                            return <><ShopItem key={shop._id} onBook={onBook} shop={shop} /></>
                         })
                             : <h2 style={{ color: "white" }}>No Shops available</h2>}
                     </div>
