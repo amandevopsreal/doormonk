@@ -100,8 +100,10 @@ class App extends Component {
                                         <NavigationCS />
                                         <Shops /></>} />
                                     <Route path='/bookingdetails' element={<>
+                                        <NavigationCS />
                                         <BookingDetails /></>} />
                                     <Route path='/bookedappointments' element={<>
+                                        <NavigationCS />
                                         <MyAppointments /></>} />
 
                                 </Routes>

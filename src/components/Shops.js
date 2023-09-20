@@ -37,7 +37,14 @@ const Shops = () => {
     return (
         <>
             <div className='container'>
+                <div className='row'>
+                    <div className='col-md-4'>
+                        <h1 className='text-light'>Search for Shops</h1>
+                    </div>
+
+                </div>
                 <div className=' mad center'>
+
                     <div style={{ width: "700px" }}>
                         <div className="input-group mb-3">
                             <input onChange={onChange} type="text" className="form-control" placeholder="Search your City" aria-label="Recipient's username" aria-describedby="button-addon2" />

@@ -73,7 +73,8 @@ const BookingDetails = ({ id }) => {
                     </div>
                     <div className="col-md-6">
                         <label htmlFor="time" className="d-flex form-label text-light">Time</label>
-                        <input onChange={onChange} type="text" className="form-control" id="time" name="time" />
+                        {/*<input onChange={onChange} type="text" className="form-control" id="time" name="time" />*/}
+                        <input className="form-control" type="time" id="appt" name="appt"></input>
                     </div>
                     <div className="col-12">
                         <button onClick={handelSubmit} type="submit" className="btn btn-primary grow">Book</button>
