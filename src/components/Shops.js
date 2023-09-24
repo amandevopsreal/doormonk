@@ -6,8 +6,19 @@ import { useContext } from 'react'
 import AppointmentContext from '../context/appointmentContext';
 import { useNavigate } from 'react-router-dom'
 const Shops = () => {
+    const days = [
+
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ];
     const context = useContext(AppointmentContext)
     const { setId } = context
+    const [date, setDate] = useState("")
     const [city, setCity] = useState("")
     const [shops, setShops] = useState([])
     const navigate = useNavigate();
@@ -16,6 +27,11 @@ const Shops = () => {
     }
     const onChange = (e) => {
         setCity(e.target.value)
+    }
+    const onDateChange = (e) => {
+        const date = new Date(e.target.value)
+        const day = date.getDay();
+        setDate(days[day])
     }
     const onBook = (id) => {
         setId(id)
@@ -28,7 +44,7 @@ const Shops = () => {
                 "Content-Type": "application/json",
                 "auth-token": localStorage.getItem("token")
             },
-            body: JSON.stringify({ city: city }),
+            body: JSON.stringify({ city: city, date: date }),
         });
         const json = await response.json()
         console.log(json)
@@ -52,7 +68,7 @@ const Shops = () => {
                         </div>
                         <div className="input-group mb-3">
                             <input className="form-control" type="time" id="appt" name="appt"></input>
-                            <input className="form-control" type="date" id="birthday" name="birthday"></input>
+                            <input onChange={onDateChange} className="form-control" type="date" id="birthday" name="birthday"></input>
                         </div>
                     </div>
                 </div>

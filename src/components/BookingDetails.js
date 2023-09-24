@@ -67,7 +67,7 @@ const BookingDetails = ({ id }) => {
                         <label htmlFor="email" className="d-flex form-label text-light">Email</label>
                         <input onChange={onChange} type="email" className="form-control" id="email" name='email' />
                     </div>
-                    <div className="col-6">
+                    <div className="col-md-6">
                         <label htmlFor="address" className="form-label d-flex text-light">Address</label>
                         <input onChange={onChange} type="text" className="form-control" id="address" name='address' />
                     </div>
