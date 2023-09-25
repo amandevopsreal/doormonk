@@ -7,14 +7,14 @@ import AppointmentContext from '../context/appointmentContext';
 import { useNavigate } from 'react-router-dom'
 const Shops = () => {
     const days = [
-
+        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
         "Saturday",
-        "Sunday",
+
     ];
     const context = useContext(AppointmentContext)
     const { setId } = context
@@ -31,6 +31,7 @@ const Shops = () => {
     const onDateChange = (e) => {
         const date = new Date(e.target.value)
         const day = date.getDay();
+        console.log(days[day])
         setDate(days[day])
     }
     const onBook = (id) => {
