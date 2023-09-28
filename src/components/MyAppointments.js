@@ -9,7 +9,7 @@ const MyAppointments = () => {
     const navigate = useNavigate();
     useEffect(() => {
         getAppointments()
-    })
+    }, [])
     return (
         <>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import 'C:/Users/redde/doormonk/src/barbercomps/Barberregister/Barberregister.css'
+import 'C:/Users/HP/doormonk/src/barbercomps/Barberregister/Barberregister.css'
 /*import { useNavigate } from 'react-router-dom'*/
 import { useContext } from 'react'
 import AppointmentContext from '../context/appointmentContext';
@@ -7,10 +7,12 @@ const BookingDetails = ({ id }) => {
     const [details, setDetails] = useState({
         name: "",
         phone: "",
-        services: "",
+        services: [],
         email: "",
         address: "",
         time: "",
+        date: "",
+        servicetype: ""
     })
     const context = useContext(AppointmentContext)
     const { addAppointment } = context
@@ -19,7 +21,8 @@ const BookingDetails = ({ id }) => {
         navigate("/barberhome");
     }*/
     const handelSubmit = async () => {
-        addAppointment(details.name, details.phone, details.services, details.email, details.address, details.time)
+        console.log(details)
+        addAppointment(details.name, details.phone, details.services, details.email, details.address, details.time, details.date, details.servicetype)
         /*const response = await fetch("http://localhost:5000/api/barberauth/createbarber", {
             method: "post",
             headers: { "Content-Type": "application/json" },
@@ -74,7 +77,20 @@ const BookingDetails = ({ id }) => {
                     <div className="col-md-6">
                         <label htmlFor="time" className="d-flex form-label text-light">Time</label>
                         {/*<input onChange={onChange} type="text" className="form-control" id="time" name="time" />*/}
-                        <input className="form-control" type="time" id="appt" name="appt"></input>
+                        <input onChange={onChange} className="form-control" type="time" id="time" name="time"></input>
+                    </div>
+                    <div className="col-md-6">
+                        <label htmlFor="date" className="d-flex form-label text-light">Date</label>
+                        {/*<input onChange={onChange} type="text" className="form-control" id="time" name="time" />*/}
+                        <input onChange={onChange} className="form-control" type="date" id="date" name="date"></input>
+                    </div>
+                    <div className="col-md-6">
+                        <label htmlFor="state" className="form-label text-light d-flex">Service Type</label>
+                        <select onChange={onChange} id="servicetype" name='servicetype' className="form-select">
+                            <option value>Choose...</option>
+                            <option>Home Visit</option>
+                            <option>Store</option>
+                        </select>
                     </div>
                     <div className="col-12">
                         <button onClick={handelSubmit} type="submit" className="btn btn-primary grow">Book</button>
