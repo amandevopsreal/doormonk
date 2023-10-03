@@ -54,10 +54,24 @@ const AppointmentState = (props) => {
         console.log(appointment)
     }
 
+    const editAppointment = async (id, date, time, services) => {
+        const response = await fetch(`${host}/api/shops/updateappointment/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem("token")
+            },
+            body: JSON.stringify({ date, time, services }),
+        });
+        console.log("Updating an appointment")
+        const appointment = response.json()
+        console.log(appointment)
+    }
+
 
 
     return (
-        <AppointmentContext.Provider value={{ deleteAppointment, setAppId, appointments, setId, addAppointment, getAppointments }}>
+        <AppointmentContext.Provider value={{ shopId, appointmentId, deleteAppointment, setAppId, appointments, setId, addAppointment, getAppointments, editAppointment }}>
             {props.children}
         </AppointmentContext.Provider>
     )

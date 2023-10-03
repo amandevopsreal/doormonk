@@ -11,7 +11,7 @@ const BookingDetails = ({ id }) => {
         email: "",
         address: "",
         time: "",
-        date: "",
+        date: new Date(),
         servicetype: ""
     })
     const context = useContext(AppointmentContext)

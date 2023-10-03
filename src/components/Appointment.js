@@ -14,9 +14,9 @@ function AlertDialog({ setInvalid }) {
     const { deleteAppointment } = context
     const [open, setOpen] = React.useState(true);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    //const handleClickOpen = () => {
+    //    setOpen(true);
+    //};
 
     const handleClose = () => {
         deleteAppointment()
@@ -59,7 +59,7 @@ function AlertDialog({ setInvalid }) {
 }
 
 
-const Appointment = ({ appointment }) => {
+const Appointment = ({ appointment, updateAppointment }) => {
     const context = useContext(AppointmentContext)
     const { setAppId } = context
     const onCancel = (id) => {
@@ -86,6 +86,8 @@ const Appointment = ({ appointment }) => {
                     <p className="card-text"><span className='b'>Services</span>{": " + appointment.services}</p>
                     <p className="card-text"><span className='b'>Phone</span>{": " + appointment.phone}</p>
                     <p className="card-text"><span className='b'>Email</span>{": " + appointment.email}</p>
+
+                    <p className="card-text"><span className='b'>Slot Date</span>{": " + appointment.date}</p>
                     <p className="card-text"><span className='b'>Slot Time</span>{": " + appointment.time}</p>
                     <p className="card-text"><span className='b'>Unique Booking Id</span>{": " + appointment.bookingid}</p>
                     <p className="card-text"><span className='b'>Barber's Name</span>{": " + appointment.barbername}</p>
@@ -94,8 +96,26 @@ const Appointment = ({ appointment }) => {
                     <p className="card-text"><span className='b'>Barber's Email</span>{": " + appointment.barberemail}</p>
                     <p className="card-text"><span className='b'>Barber's Address</span>{": " + appointment.barberaddress}</p>
                     <p className="card-text"><span className='b'>Service Type</span>{": " + appointment.servicetype}</p>
-                    <button style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Edit Service</button>
-                    <button disabled={appointment.status === "Canceled"} onClick={() => onCancel(appointment._id)} style={{ borderRadius: "0.375rem" }} className="price-btn btn btn-primary mx-2">Cancel Service</button>
+
+
+                    {
+                        appointment.status === "Pending" ?
+                            <>
+                                <button onClick={() => updateAppointment(appointment)} style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Edit Service</button>
+                                <button disabled={appointment.status === "Canceled"} onClick={() => onCancel(appointment._id)} style={{ borderRadius: "0.375rem" }} className="price-btn btn btn-primary mx-2">Cancel Service</button>
+                            </> :
+                            appointment.status === "Canceled" ?
+                                <>
+                                </> :
+                                <>
+                                    <button style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Rate/ Review</button>
+                                </>
+
+                    }
+
+
+
+
 
                 </div>
             </div>
