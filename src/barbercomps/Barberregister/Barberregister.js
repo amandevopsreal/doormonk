@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 import './Barberregister.css'
 import { useNavigate } from 'react-router-dom'
+import Barberregister2 from './Barberregister2'
 const Barberregister = () => {
     const [barber, setBarber] = useState({
         name: "",
         phone: "",
         website: "",
-        services: "",
         type: "",
         email: "",
         password: "",
         address: "",
         city: "",
         state: "",
-        workinghours: "",
+        fromworkinghours: "",
+        toworkinghours: "",
         zip: 0
     })
     const navigate = useNavigate();
@@ -66,10 +67,6 @@ const Barberregister = () => {
                         <input onChange={onChange} type="text" className="form-control" id="website" name='website' />
                     </div>
                     <div className="col-md-6">
-                        <label htmlFor="services" className="d-flex form-label text-light">Services</label>
-                        <input onChange={onChange} type="text" className="form-control" id="services" name='services' />
-                    </div>
-                    <div className="col-md-6">
                         <label htmlFor="type" className="form-label text-light d-flex">Type</label>
                         <select onChange={onChange} id="type" name='type' className="form-select">
                             <option value>Choose...</option>
@@ -86,7 +83,7 @@ const Barberregister = () => {
                         <label htmlFor="password" className="d-flex form-label text-light">Password</label>
                         <input onChange={onChange} type="password" className="form-control" id="password" name='password' />
                     </div>
-                    <div className="col-6">
+                    <div className="col-md-6">
                         <label htmlFor="address" className="form-label d-flex text-light">Address</label>
                         <input onChange={onChange} type="text" className="form-control" id="address" name='address' />
                     </div>
@@ -110,15 +107,21 @@ const Barberregister = () => {
                         <label htmlFor="zip" className="form-label text-light d-flex">Zip</label>
                         <input onChange={onChange} type="text" className="form-control" id="zip" name='zip' />
                     </div>
-                    <div className="col-md-6">
-                        <label htmlFor="workinghours" className="d-flex form-label text-light">Working Hours</label>
-                        <input onChange={onChange} type="text" className="form-control" id="workinghours" name="workinghours" />
+                    <div className="col-md-3">
+                        <label htmlFor="workinghours" className="d-flex form-label text-light">Working Hours From</label>
+                        <input onChange={onChange} className="form-control" type="time" id="fromworkinghhours" name="fromworkinghhours"></input>
                     </div>
+                    <div className="col-md-3">
+                        <label htmlFor="workinghours" className="d-flex form-label text-light">To</label>
+                        <input onChange={onChange} className="form-control" type="time" id="toworkinghhours" name="toworkinghhours"></input>
+                    </div>
+                    <Barberregister2 />
                     <div className="col-12">
-                        <button onClick={handelSubmit} type="submit" className="btn btn-primary grow">Register</button>
+                        <button onClick={handelSubmit} type="submit" className="btn btn-primary grow">Next</button>
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
