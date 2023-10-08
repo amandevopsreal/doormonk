@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { MultiSelect } from "react-multi-select-component";
 
 const options = [
@@ -11,31 +11,26 @@ const options = [
     { label: "Sunday", value: "Sunday" },
 ];
 
-const Example = () => {
-    const [selected, setSelected] = useState([]);
+const Barberregister2 = ({ selected, setSelected }) => {
+
 
     return (
-        <div style={{ color: "White" }}>
-            <h1>Select Working Days</h1>
-            <pre>{JSON.stringify(selected)}</pre>
-            <div style={{ color: "Black" }}>
-                <MultiSelect
-                    options={options}
-                    value={selected}
-                    onChange={setSelected}
-                    labelledBy="Select"
-                />
+        <div className="col-md-3">
+            <div style={{ color: "White" }}>
+                <label htmlFor="workinghours" className="d-flex form-label text-light">Select Working Days</label>
+                <div style={{ color: "Black" }}>
+                    <MultiSelect
+                        options={options}
+                        value={selected}
+                        onChange={setSelected}
+                        labelledBy="Select"
+                    />
+                </div>
             </div>
         </div>
     );
 };
 
-const Barberregister2 = () => {
-    return (
-        <>
-            <Example />
-        </>
-    )
-}
+
 
 export default Barberregister2
