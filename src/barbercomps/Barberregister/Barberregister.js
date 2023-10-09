@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Barberregister.css'
 import { useNavigate } from 'react-router-dom'
 import Barberregister2 from './Barberregister2'
+import ServiceItem from '../ServiceItem'
 const Barberregister = () => {
     const [barber, setBarber] = useState({
         name: "",
@@ -168,6 +169,16 @@ const Barberregister = () => {
                             <div className="col-6">
                                 <button onClick={handelSubmit} type="submit" className="btn btn-primary grow">Register</button>
                             </div>
+                        </div>
+                        <div>
+                            <div className='row my-3'>
+                                <h2 style={{ color: "white" }}>Your Services</h2>
+                                <div className='container mx-2' style={{ color: "white" }}>
+                                    {services.length === 0 && "No added services"}
+                                </div>
+                                {services.map((service, i) => {
+                                    return <ServiceItem key={i} service={service} />
+                                })}</div>
                         </div>
                     </>}
 
