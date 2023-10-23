@@ -1,7 +1,8 @@
-import React, { useEffect, useState, } from 'react'
-
-
+import React, { useEffect, useState, useContext } from 'react'
+import AppointmentContext from '../context/appointmentContext';
 const ViewPrices = () => {
+    const context = useContext(AppointmentContext)
+    const { shopId } = context
     const [prices, setPrices] = useState([])
     useEffect(() => {
 
@@ -15,17 +16,17 @@ const ViewPrices = () => {
                 body: JSON.stringify({ id: localStorage.getItem("id") }),
             });
             const json = await response.json()
-            console.log(json)
             setPrices(json)
+
         }
         onSearch()
-    }, [])
+    }, [shopId])
     return (
         <>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            {/*<button  type="button" className="btn btn-primary" >
                 Launch demo modal
-            </button>
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    </button>*/}
+            <div div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
                 <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
@@ -35,11 +36,11 @@ const ViewPrices = () => {
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
-                                {
-                                    prices.map(service => {
-                                        return (<p>{Object.keys(service)[0]}:{Object.values(service)}</p>)
-                                    })
-                                }
+                                {prices.map((service, i) => {
+                                    return <div key={i}>{service.services.map((item, j) => {
+                                        return (<p key={j}>{Object.keys(item)}:{Object.values(item)}</p>)
+                                    })}</div>
+                                })}
                             </div>
                             <div className="modal-footer">
                                 <button data-bs-dismiss="modal" style={{ borderRadius: "0.375rem" }} className="price-btn btn btn-primary mx-2">Close</button>
