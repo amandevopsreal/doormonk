@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./ShopItem.css"
-
+import AppointmentContext from '../context/appointmentContext';
 
 const ShopItem = ({ shop, onBook }) => {
+    const context = useContext(AppointmentContext)
+    const { setId } = context
+    const onViewPrices = (id) => {
+        setId(id)
 
+    }
     return (
         <>
             <div style={{ textAlign: "left" }} className="card my-3">
@@ -18,7 +23,7 @@ const ShopItem = ({ shop, onBook }) => {
                     <p className="card-text"><span className='b'>Email</span>{": " + shop.email}</p>
                     <p className="card-text"><span className='b'>Working hours</span>{": " + shop.workinghours}</p>
                     <button onClick={() => onBook(shop._id)} style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Book</button>
-                    <button style={{ borderRadius: "0.375rem" }} className="price-btn btn btn-primary mx-2">View Prices</button>
+                    <button onClick={() => onViewPrices(shop._id)} style={{ borderRadius: "0.375rem" }} className="price-btn btn btn-primary mx-2">View Prices</button>
                 </div>
             </div>
 

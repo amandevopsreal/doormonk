@@ -1,5 +1,5 @@
 import React from 'react'
-const ServiceItem = ({ }) => {
+const ServiceItem = ({ service, price }) => {
     return (
         <>
             <div className="card col-md-3 my-3">
@@ -8,7 +8,7 @@ const ServiceItem = ({ }) => {
                         <h5 className="card-title">Service</h5>
                     </div>
 
-                    <p className="card-text">Name: Price</p>
+                    <p className="card-text">{service}: {price}</p>
 
                 </div>
             </div >

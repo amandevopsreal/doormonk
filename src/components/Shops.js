@@ -5,6 +5,7 @@ import ShopItem from './ShopItem';
 import { useContext } from 'react'
 import AppointmentContext from '../context/appointmentContext';
 import { useNavigate } from 'react-router-dom'
+import ViewPrices from './ViewPrices';
 const Shops = () => {
     const days = [
         "Sunday",
@@ -83,6 +84,7 @@ const Shops = () => {
                 </div>
 
             </div>
+            <ViewPrices />
         </>
     )
 }

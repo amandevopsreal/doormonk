@@ -177,7 +177,7 @@ const Barberregister = () => {
                                     {services.length === 0 && "No added services"}
                                 </div>
                                 {services.map((service, i) => {
-                                    return <ServiceItem key={i} service={service} />
+                                    return <ServiceItem key={i} price={Object.values(service)} service={Object.keys(service)[0]} />
                                 })}</div>
                         </div>
                     </>}
