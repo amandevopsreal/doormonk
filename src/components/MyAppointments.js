@@ -35,6 +35,7 @@ const MyAppointments = () => {
     const handelSubmit = () => {
         editAppointment(eappointment.id, eappointment.date, eappointment.time, eappointment.services)
         refClose.current.click()
+        window.location.reload();
     }
     const context = useContext(AppointmentContext)
     const { getAppointments, appointments, editAppointment } = context

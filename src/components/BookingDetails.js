@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'C:/Users/HP/doormonk/src/barbercomps/Barberregister/Barberregister.css'
 /*import { useNavigate } from 'react-router-dom'*/
 import { useContext } from 'react'
 import AppointmentContext from '../context/appointmentContext';
+import ServiceItemC from './ServiceItemC';
+import AddedServiceCard from './AddedServiceCard';
+
 const BookingDetails = ({ id }) => {
     const [details, setDetails] = useState({
         name: "",
@@ -15,14 +18,14 @@ const BookingDetails = ({ id }) => {
         servicetype: ""
     })
     const context = useContext(AppointmentContext)
-    const { addAppointment } = context
+    const { addAppointment, added, total } = context
     /*const navigate = useNavigate();*/
     /*const handleClick = () => {
         navigate("/barberhome");
     }*/
     const handelSubmit = async () => {
         console.log(details)
-        addAppointment(details.name, details.phone, details.services, details.email, details.address, details.time, details.date, details.servicetype)
+        addAppointment(details.name, details.phone, details.services, details.email, details.address, details.time, details.date, details.servicetype, added, total)
         /*const response = await fetch("http://localhost:5000/api/barberauth/createbarber", {
             method: "post",
             headers: { "Content-Type": "application/json" },
@@ -44,58 +47,114 @@ const BookingDetails = ({ id }) => {
             [e.target.name]: e.target.value
         })
     }
+    const [services, setServices] = useState([])
+    const [page, setPage] = useState("Details");
+    const onNext = () => {
+        setPage("Services")
+        console.log("clicked")
+    }
+    const onPrev = () => {
+        setPage("Details")
+    }
+
+    useEffect(() => {
+        const onSearch = async () => {
+            const response = await fetch(`http://localhost:5000/api/shops/fetchprices`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": localStorage.getItem("token")
+                },
+                body: JSON.stringify({ id: localStorage.getItem("id") }),
+            });
+            const json = await response.json()
+            setServices(json)
+
+        }
+        onSearch()
+    }, [])
     return (
         <div className='container h-100'>
             <div className='row'>
                 <div className='col-md-4'>
                     <h1 className='text-light'>Enter the details below.</h1>
+                    <h1 className='text-light'>Total: {total}</h1>
                 </div>
 
             </div>
             <div className='container my-3'>
-                <div className="row g-3">
-                    <div className="col-md-6">
-                        <label htmlFor="name" className="d-flex form-label text-light">Name</label>
-                        <input onChange={onChange} type="text" className="form-control" id="name" name='name' />
-                    </div>
-                    <div className="col-md-6">
-                        <label htmlFor="phone" className="d-flex form-label text-light">Phone</label>
-                        <input onChange={onChange} name='phone' type="text" className="form-control" id="phone" />
-                    </div>
-                    <div className="col-md-6">
-                        <label htmlFor="services" className="d-flex form-label text-light">Services</label>
-                        <input onChange={onChange} type="text" className="form-control" id="services" name='services' />
-                    </div>
-                    <div className="col-md-6">
-                        <label htmlFor="email" className="d-flex form-label text-light">Email</label>
-                        <input onChange={onChange} type="email" className="form-control" id="email" name='email' />
-                    </div>
-                    <div className="col-md-6">
-                        <label htmlFor="address" className="form-label d-flex text-light">Address</label>
-                        <input onChange={onChange} type="text" className="form-control" id="address" name='address' />
-                    </div>
-                    <div className="col-md-6">
-                        <label htmlFor="time" className="d-flex form-label text-light">Time</label>
-                        {/*<input onChange={onChange} type="text" className="form-control" id="time" name="time" />*/}
-                        <input onChange={onChange} className="form-control" type="time" id="time" name="time"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label htmlFor="date" className="d-flex form-label text-light">Date</label>
-                        {/*<input onChange={onChange} type="text" className="form-control" id="time" name="time" />*/}
-                        <input onChange={onChange} className="form-control" type="date" id="date" name="date"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label htmlFor="state" className="form-label text-light d-flex">Service Type</label>
-                        <select onChange={onChange} id="servicetype" name='servicetype' className="form-select">
-                            <option value>Choose...</option>
-                            <option>Home Visit</option>
-                            <option>Store</option>
-                        </select>
-                    </div>
-                    <div className="col-12">
-                        <button onClick={handelSubmit} type="submit" className="btn btn-primary grow">Book</button>
-                    </div>
-                </div>
+                {page === "Details" ?
+                    <><div className="row g-3">
+                        <div className="col-md-6">
+                            <label htmlFor="name" className="d-flex form-label text-light">Name</label>
+                            <input onChange={onChange} type="text" className="form-control" id="name" name='name' />
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="phone" className="d-flex form-label text-light">Phone</label>
+                            <input onChange={onChange} name='phone' type="text" className="form-control" id="phone" />
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="email" className="d-flex form-label text-light">Email</label>
+                            <input onChange={onChange} type="email" className="form-control" id="email" name='email' />
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="address" className="form-label d-flex text-light">Address</label>
+                            <input onChange={onChange} type="text" className="form-control" id="address" name='address' />
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="time" className="d-flex form-label text-light">Time</label>
+                            {/*<input onChange={onChange} type="text" className="form-control" id="time" name="time" />*/}
+                            <input onChange={onChange} className="form-control" type="time" id="time" name="time"></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="date" className="d-flex form-label text-light">Date</label>
+                            {/*<input onChange={onChange} type="text" className="form-control" id="time" name="time" />*/}
+                            <input onChange={onChange} className="form-control" type="date" id="date" name="date"></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="state" className="form-label text-light d-flex">Service Type</label>
+                            <select onChange={onChange} id="servicetype" name='servicetype' className="form-select">
+                                <option value>Choose...</option>
+                                <option>Home Visit</option>
+                                <option>Store</option>
+                            </select>
+                        </div>
+                        <div className="col-12">
+                            <button onClick={onNext} type="submit" className="btn btn-primary grow">Next</button>
+                        </div>
+                    </div></> :
+                    <>
+                        <div className="row g-3">
+
+                            <div>
+                                <div className='row my-3'>
+                                    <h2 style={{ color: "white" }}>Selected Services</h2>
+                                    <div className='container mx-2' style={{ color: "white" }}>
+                                        {added.length === 0 && "No selected services"}
+                                    </div>
+                                    {added.map(service => {
+                                        return (<AddedServiceCard service={service} style={{ color: "white" }}></AddedServiceCard>)
+                                    })}</div>
+                            </div>
+
+                            <div className="col-6">
+                                <button onClick={onPrev} type="submit" className="btn btn-primary grow">Previous</button>
+                            </div>
+                            <div className="col-6">
+                                <button onClick={handelSubmit} type="submit" className="btn btn-primary grow">Book</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div className='row my-3'>
+                                <h2 style={{ color: "white" }}>Available Services</h2>
+                                <div className='container mx-2' style={{ color: "white" }}>
+                                    {services.length === 0 && "No added services"}
+                                </div>
+                                {services[0].services.map((service, i) => {
+                                    return <ServiceItemC key={i} price={Object.values(service)} service={Object.keys(service)[0]} />
+                                })}</div>
+                        </div>
+                    </>}
             </div>
         </div>
     )

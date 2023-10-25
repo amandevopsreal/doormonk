@@ -5,6 +5,25 @@ const AppointmentState = (props) => {
     const host = "http://localhost:5000"
     const [shopId, setShopId] = useState("")
     const [appointmentId, setAppointmentId] = useState("")
+    const [added, setAdded] = useState([])
+    const [total, setTotal] = useState(0)
+    const addService = (service, price) => {
+        if (!added.includes(service)) {
+            setAdded(added.concat(service))
+            setTotal(total + parseInt(price, 10))
+        }
+
+    }
+    const removeService = (service, price) => {
+        if (added.includes(service)) {
+            setAdded(added.filter(function (item) {
+                return item !== service;
+            }))
+            setTotal(total - parseInt(price, 10))
+        }
+
+
+    }
     const setId = (id) => {
         setShopId(id)
         localStorage.setItem("id", id)
@@ -27,14 +46,14 @@ const AppointmentState = (props) => {
         setAppointments(json)
     }
 
-    const addAppointment = async (name, phone, services, email, address, time, date, servicetype) => {
+    const addAppointment = async (name, phone, services, email, address, time, date, servicetype, added, total) => {
         const response = await fetch(`${host}/api/shops/addappointment/${localStorage.getItem("id")}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "auth-token": localStorage.getItem("token")
             },
-            body: JSON.stringify({ name, phone, services, email, address, time, date, servicetype }),
+            body: JSON.stringify({ name, phone, services, email, address, time, date, servicetype, added, total }),
         });
         console.log("Adding a new appointment")
         const appointment = response.json()
@@ -71,7 +90,7 @@ const AppointmentState = (props) => {
 
 
     return (
-        <AppointmentContext.Provider value={{ shopId, appointmentId, deleteAppointment, setAppId, appointments, setId, addAppointment, getAppointments, editAppointment }}>
+        <AppointmentContext.Provider value={{ removeService, total, addService, added, shopId, appointmentId, deleteAppointment, setAppId, appointments, setId, addAppointment, getAppointments, editAppointment }}>
             {props.children}
         </AppointmentContext.Provider>
     )
