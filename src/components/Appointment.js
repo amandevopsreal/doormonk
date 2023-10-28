@@ -59,7 +59,7 @@ function AlertDialog({ setInvalid }) {
 }
 
 
-const Appointment = ({ appointment, updateAppointment }) => {
+const Appointment = ({ appointment, updateAppointment, reviewAppointment }) => {
     const context = useContext(AppointmentContext)
     const { setAppId } = context
     const onCancel = (id) => {
@@ -108,7 +108,7 @@ const Appointment = ({ appointment, updateAppointment }) => {
                                 <>
                                 </> :
                                 <>
-                                    <button style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Rate/ Review</button>
+                                    <button onClick={() => reviewAppointment(appointment)} style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Rate/ Review</button>
                                 </>
 
                     }
