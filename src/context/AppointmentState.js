@@ -87,10 +87,24 @@ const AppointmentState = (props) => {
         console.log(appointment)
     }
 
+    const reviewAppointment2 = async (reviews, ratings, id) => {
+        const response = await fetch(`${host}/api/shops/postreview`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem("token")
+            },
+            body: JSON.stringify({ reviews, ratings, id }),
+        });
+        console.log("Reviewing an appointment")
+        const appointment = response.json()
+        console.log(appointment)
+    }
+
 
 
     return (
-        <AppointmentContext.Provider value={{ removeService, total, addService, added, shopId, appointmentId, deleteAppointment, setAppId, appointments, setId, addAppointment, getAppointments, editAppointment }}>
+        <AppointmentContext.Provider value={{ reviewAppointment2, removeService, total, addService, added, shopId, appointmentId, deleteAppointment, setAppId, appointments, setId, addAppointment, getAppointments, editAppointment }}>
             {props.children}
         </AppointmentContext.Provider>
     )

@@ -35,7 +35,7 @@ function AlertDialog({ setInvalid }) {
 
             <Dialog
                 open={open}
-                onClose={handleClose}
+                onClose={handleClose2}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >

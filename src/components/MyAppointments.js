@@ -3,9 +3,9 @@ import { useContext } from 'react'
 import AppointmentContext from '../context/appointmentContext';
 import Appointment from './Appointment';
 const MyAppointments = () => {
-    const [modal, setModal] = useState("Update")
+    const [modal, setModal] = useState("")
     const [status, setStatus] = useState("Pending")
-    const [eappointment, setEappointment] = useState({
+    const [eappointment, setEappointment,] = useState({
 
         id: "",
         date: new Date(),
@@ -13,8 +13,9 @@ const MyAppointments = () => {
         services: ""
     })
     const [review, setReview] = useState({
-
-        
+        reviews: "",
+        ratings: "",
+        id: ""
     })
     const onStatusChange = (e) => {
         console.log(e.target.value)
@@ -34,14 +35,26 @@ const MyAppointments = () => {
     }
     const reviewAppointment = (currentAppointment) => {
         setModal("Review")
-        refReview.current.click()
+        ref.current.click()
+        console.log(currentAppointment.barber)
+        setReview({
+            reviews: "",
+            ratings: "",
+            id: currentAppointment.barber
 
+        })
 
 
     }
     const onChange = (e) => {
         setEappointment({
-            ...eappointment,
+            ...review,
+            [e.target.name]: e.target.value
+        })
+    }
+    const onChange2 = (e) => {
+        setReview({
+            ...review,
             [e.target.name]: e.target.value
         })
     }
@@ -50,14 +63,19 @@ const MyAppointments = () => {
         refClose.current.click()
         window.location.reload();
     }
+    const handelSubmit2 = () => {
+
+
+        reviewAppointment2(review.reviews, parseInt(review.ratings, 10), review.id)
+        refClose.current.click()
+    }
     const context = useContext(AppointmentContext)
-    const { getAppointments, appointments, editAppointment } = context
+    const { getAppointments, appointments, editAppointment, reviewAppointment2 } = context
     useEffect(() => {
         getAppointments()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const ref = useRef(null)
-    const refReview = useRef(null)
     const refClose = useRef(null)
     return (
         <>
@@ -78,44 +96,11 @@ const MyAppointments = () => {
                                         <form className='my-3'>
                                             <div style={{ textAlign: "left" }} className="mb-3">
                                                 <label htmlFor="title" className="form-label">Date</label>
-                                                <input required value={eappointment.date} style={{ color: "black" }} onChange={onChange} className="form-control" type="date" id="date" name="date"></input>
+                                                <input required value={eappointment.date} style={{ color: "black" }} onChange={onChange2} className="form-control" type="date" id="date" name="date"></input>
                                             </div>
                                             <div style={{ textAlign: "left" }} className="mb-3">
                                                 <label htmlFor="description" className="form-label">Time</label>
-                                                <input required value={eappointment.time} style={{ color: "black" }} onChange={onChange} className="form-control" type="time" id="time" name="time"></input>
-                                            </div>
-                                            <div style={{ textAlign: "left" }} className="mb-3">
-                                                <label htmlFor="tag" className="form-label">Services</label>
-                                                <input value={eappointment.services} style={{ color: "black" }} onChange={onChange} type="text" className="form-control" id="services" name='services' />
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div className="modal-footer">
-                                        <button data-bs-dismiss="modal" style={{ borderRadius: "0.375rem" }} className="price-btn btn btn-primary mx-2">Close</button>
-                                        <button onClick={handelSubmit} style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Update</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div><button ref={ref} type="button" className="d-none btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Launch demo modal
-                        </button>
-                        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div className="modal-dialog">
-                                <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h1 className="modal-title fs-5" id="exampleModalLabel">Update Appointment</h1>
-                                        <button ref={refClose} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div className="modal-body">
-                                        <form className='my-3'>
-                                            <div style={{ textAlign: "left" }} className="mb-3">
-                                                <label htmlFor="title" className="form-label">Date</label>
-                                                <input required value={eappointment.date} style={{ color: "black" }} onChange={onChange} className="form-control" type="date" id="date" name="date"></input>
-                                            </div>
-                                            <div style={{ textAlign: "left" }} className="mb-3">
-                                                <label htmlFor="description" className="form-label">Time</label>
-                                                <input required value={eappointment.time} style={{ color: "black" }} onChange={onChange} className="form-control" type="time" id="time" name="time"></input>
+                                                <input required value={eappointment.time} style={{ color: "black" }} onChange={onChange2} className="form-control" type="time" id="time" name="time"></input>
                                             </div>
                                             <div style={{ textAlign: "left" }} className="mb-3">
                                                 <label htmlFor="tag" className="form-label">Services</label>
@@ -133,7 +118,7 @@ const MyAppointments = () => {
                         </div>
                     </> :
                     <>
-                        <button ref={refReview} type="button" className="d-none btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button ref={ref} type="button" className="d-none btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Launch demo modal
                         </button>
                         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -146,18 +131,18 @@ const MyAppointments = () => {
                                     <div className="modal-body">
                                         <form className='my-3'>
                                             <div style={{ textAlign: "left" }} className="mb-3">
-                                                <label htmlFor="tag" className="form-label">Rate out of 5</label>
-                                                <input value={eappointment.services} style={{ color: "black" }} onChange={onChange} type="text" className="form-control" id="services" name='services' />
+                                                <label htmlFor="ratings" className="form-label">Rate out of 5</label>
+                                                <input style={{ color: "black" }} onChange={onChange2} type="text" className="form-control" id="ratings" name='ratings' />
                                             </div>
                                             <div style={{ textAlign: "left" }} className="mb-3">
-                                                <label htmlFor="tag" className="form-label">Review</label>
-                                                <input value={eappointment.services} style={{ color: "black" }} onChange={onChange} type="text" className="form-control" id="services" name='services' />
+                                                <label htmlFor="reviews" className="form-label">Review</label>
+                                                <input onChange={onChange2} style={{ color: "black" }} type="text" className="form-control" id="reviews" name='reviews' />
                                             </div>
                                         </form>
                                     </div>
                                     <div className="modal-footer">
                                         <button data-bs-dismiss="modal" style={{ borderRadius: "0.375rem" }} className="price-btn btn btn-primary mx-2">Close</button>
-                                        <button onClick={handelSubmit} style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Update</button>
+                                        <button onClick={handelSubmit2} style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Post</button>
 
                                     </div>
                                 </div>
