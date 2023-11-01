@@ -37,10 +37,13 @@ const Barberregister = () => {
         navigate("/barberhome");
     }
     const handelSubmit = async () => {
+        const arr = selected.map(item => {
+            return item.value
+        })
         const response = await fetch("http://localhost:5000/api/barberauth/createbarber", {
             method: "post",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...barber, workingdays: selected, services: services })
+            body: JSON.stringify({ ...barber, workingdays: arr, services: services })
         })
         const json = await response.json()
         if (json.success) {
