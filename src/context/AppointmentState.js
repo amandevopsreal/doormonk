@@ -58,6 +58,7 @@ const AppointmentState = (props) => {
         console.log("Adding a new appointment")
         const appointment = response.json()
         setAppointments(appointments.concat(appointment))
+        return true
     }
 
     const deleteAppointment = async () => {
