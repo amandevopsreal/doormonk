@@ -19,6 +19,8 @@ import SearchboxB from "../barbercomps/SearchboxB";
 import BookingDetails from "../components/BookingDetails";
 import AppointmentState from "../context/AppointmentState";
 import MyAppointments from "../components/MyAppointments";
+import Reviews from "../barbercomps/Reviews";
+
 import {
     BrowserRouter as Router,
     Routes,
@@ -105,6 +107,8 @@ class App extends Component {
                                     <Route path='/bookedappointments' element={<>
                                         <NavigationCS />
                                         <MyAppointments /></>} />
+                                    <Route path='/reviews' element={<>
+                                        <Reviews /></>} />
 
                                 </Routes>
 
