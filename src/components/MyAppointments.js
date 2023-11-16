@@ -48,7 +48,7 @@ const MyAppointments = () => {
     }
     const onChange = (e) => {
         setEappointment({
-            ...review,
+            ...eappointment,
             [e.target.name]: e.target.value
         })
     }
@@ -96,11 +96,11 @@ const MyAppointments = () => {
                                         <form className='my-3'>
                                             <div style={{ textAlign: "left" }} className="mb-3">
                                                 <label htmlFor="title" className="form-label">Date</label>
-                                                <input required value={eappointment.date} style={{ color: "black" }} onChange={onChange2} className="form-control" type="date" id="date" name="date"></input>
+                                                <input required value={eappointment.date} style={{ color: "black" }} onChange={onChange} className="form-control" type="date" id="date" name="date"></input>
                                             </div>
                                             <div style={{ textAlign: "left" }} className="mb-3">
                                                 <label htmlFor="description" className="form-label">Time</label>
-                                                <input required value={eappointment.time} style={{ color: "black" }} onChange={onChange2} className="form-control" type="time" id="time" name="time"></input>
+                                                <input required value={eappointment.time} style={{ color: "black" }} onChange={onChange} className="form-control" type="time" id="time" name="time"></input>
                                             </div>
                                             <div style={{ textAlign: "left" }} className="mb-3">
                                                 <label htmlFor="tag" className="form-label">Services</label>

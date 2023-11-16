@@ -108,6 +108,7 @@ class App extends Component {
                                         <NavigationCS />
                                         <MyAppointments /></>} />
                                     <Route path='/reviews' element={<>
+                                        <NavigationBhome />
                                         <Reviews /></>} />
 
                                 </Routes>

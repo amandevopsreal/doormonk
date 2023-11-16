@@ -31,7 +31,7 @@ const Reviews = () => {
                             return appointment.status === status && <><Appointment updateAppointment={updateAppointment} reviewAppointment={reviewAppointment} key={appointment._id} appointment={appointment} /></>
                         })
                             : <h2 style={{ color: "white" }}>No Reviews available</h2>}*/}
-                        {user.reviews.map(item => {
+                        {user.reviews?.map(item => {
                             return (<ReviewItem review={item}></ReviewItem>)
                         })}
                     </div>

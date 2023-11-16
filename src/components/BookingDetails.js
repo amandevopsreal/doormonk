@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import 'C:/Users/redde/doormonk/src/barbercomps/Barberregister/Barberregister.css'
+import '/Users/aman/doormonk/src/components/Searchbox.css'
 /*import { useNavigate } from 'react-router-dom'*/
 import { useContext } from 'react'
 import AppointmentContext from '../context/appointmentContext';
