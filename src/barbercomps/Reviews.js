@@ -20,7 +20,7 @@ const Reviews = () => {
             <div className='container'>
                 <div className='row'>
                     <div className='col-md-4'>
-                        <h1 className='text-light'>Recent Ratings and Reviews</h1>
+                        <h1 className='text-light'>Ratings and Reviews</h1>
                     </div>
 
                 </div>
