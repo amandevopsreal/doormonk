@@ -22,6 +22,7 @@ const NavigationCS = () => {
             <div className="navbar">
                 <div className="logo"><Link to="/home" >DoormonK</Link></div>
                 <ul className="links">
+                    <li><Link to="/dashboard">My Account</Link></li>
                     <li><Link to="/bookedappointments">My Bookings</Link></li>
                     <li><Link to="/">Log out</Link></li>
                 </ul>
@@ -31,6 +32,7 @@ const NavigationCS = () => {
 
             </div>
             <div className="dropdown_menu">
+                <li><Link to="/dashboard">My Account</Link></li>
                 <li><Link to="/bookedappointments">My Bookings</Link></li>
                 <li><Link to="/">Log out</Link></li>
             </div>

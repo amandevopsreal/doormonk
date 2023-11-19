@@ -16,7 +16,7 @@ const ShopItem = ({ shop, onBook, onViewSwitch }) => {
                 <h5 className="card-header"><i className="fa-solid fa-shop head-icon"> Shop</i></h5>
                 <div className="card-body">
                     <h5 className="card-title">{shop.name}</h5>
-                    <p className="card-text"><i className="fa-solid fa-star rating-icon"></i> Ratings</p>
+                    <p className="card-text"><i className="fa-solid fa-star rating-icon"></i><span className='b'>Ratings</span>{": " + Math.round(shop.ratings * 10) / 10}</p>
                     <p className="card-text"><span className='b'>Address</span>{": " + shop.address}</p>
                     <p className="card-text"><span className='b'>Type</span>{": " + shop.type}</p>
                     <p className="card-text"><span className='b'>Phone</span>{": " + shop.phone}</p>

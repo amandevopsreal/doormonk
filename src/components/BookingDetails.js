@@ -145,7 +145,7 @@ const BookingDetails = ({ id }) => {
                 <div className='row'>
                     <div className='col-md-4'>
                         <h1 className='text-light'>Enter the details below.</h1>
-                        <h1 className='text-light'>Total: {total}</h1>
+                        {page==="Services"&&<h1 className='text-light'>Total: {total}</h1>}
                     </div>
 
                 </div>

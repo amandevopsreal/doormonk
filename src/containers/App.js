@@ -21,6 +21,7 @@ import AppointmentState from "../context/AppointmentState";
 import MyAppointments from "../components/MyAppointments";
 import Reviews from "../barbercomps/Reviews";
 import AppointmentsB from "../barbercomps/AppointmentsB";
+import Dashboard from "../components/Dashboard";
 import {
     BrowserRouter as Router,
     Routes,
@@ -113,6 +114,9 @@ class App extends Component {
                                         <Route path='/pendingappointments' element={<>
                                         <NavigationBhome />
                                         <AppointmentsB /></>} />
+                                        <Route path='/dashboard' element={<>
+                                        <NavigationCS />
+                                        <Dashboard /></>} />
 
                                 </Routes>
 
