@@ -75,7 +75,8 @@ const AppointmentState = (props) => {
     }
 
     const editAppointment = async (id, date, time, services) => {
-        const response = await fetch(`${host}/api/shops/updateappointment/${id}`, {
+        
+        await fetch(`${host}/api/shops/updateappointment/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -83,13 +84,16 @@ const AppointmentState = (props) => {
             },
             body: JSON.stringify({ date, time, services }),
         });
-        console.log("Updating an appointment")
-        const appointment = response.json()
-        console.log(appointment)
+        alert("Your appointment was updated successfully.")
     }
 
     const reviewAppointment2 = async (reviews, ratings, id) => {
-        const response = await fetch(`${host}/api/shops/postreview`, {
+        if(!reviews&&!ratings)
+        {
+            alert("Please fill the enteries.")
+            return
+        }
+        await fetch(`${host}/api/shops/postreview`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -97,9 +101,10 @@ const AppointmentState = (props) => {
             },
             body: JSON.stringify({ reviews, ratings, id }),
         });
-        console.log("Reviewing an appointment")
-        const appointment = response.json()
-        console.log(appointment)
+        alert("Thanks for providing your feedback..")
+        
+        
+        
     }
 
 

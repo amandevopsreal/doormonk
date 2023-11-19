@@ -12,7 +12,7 @@ const Dashboard = () => {
         })
     }
     const onEdit = async () => {
-        const response = await fetch(`http://localhost:5000/api/auth/updateuser`, {
+        await fetch(`http://localhost:5000/api/auth/updateuser`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -20,8 +20,7 @@ const Dashboard = () => {
             },
             body: JSON.stringify({ name: user.name, email: user.email }),
         });
-        const json = await response.json()
-        console.log(json)
+        alert("Account Updated.")
     }
     useEffect(() => {
         const getUser = async () => {

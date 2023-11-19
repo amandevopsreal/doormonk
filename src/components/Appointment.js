@@ -23,6 +23,7 @@ function AlertDialog({ setInvalid }) {
         setOpen(false);
         setInvalid(false)
         window.location.reload();
+        alert("Appointment cancelled.")
     };
 
     const handleClose2 = () => {
@@ -87,7 +88,7 @@ const Appointment = ({ appointment, updateAppointment, reviewAppointment }) => {
                     <p className="card-text"><span className='b'>Phone</span>{": " + appointment.phone}</p>
                     <p className="card-text"><span className='b'>Email</span>{": " + appointment.email}</p>
 
-                    <p className="card-text"><span className='b'>Slot Date</span>{": " + appointment.date}</p>
+                    <p className="card-text"><span className='b'>Slot Date</span>{": " +new Date(appointment.date).toLocaleDateString()}</p>
                     <p className="card-text"><span className='b'>Slot Time</span>{": " + appointment.time}</p>
                     <p className="card-text"><span className='b'>Unique Booking Id</span>{": " + appointment.bookingid}</p>
                     <p className="card-text"><span className='b'>Barber's Name</span>{": " + appointment.barbername}</p>

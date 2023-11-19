@@ -22,7 +22,7 @@ const ShopItem = ({ shop, onBook, onViewSwitch }) => {
                     <p className="card-text"><span className='b'>Phone</span>{": " + shop.phone}</p>
                     <p className="card-text"><span className='b'>Website</span>{": " + shop.website}</p>
                     <p className="card-text"><span className='b'>Email</span>{": " + shop.email}</p>
-                    <p className="card-text"><span className='b'>Working hours</span>{": " + shop.workinghours}</p>
+                    <p className="card-text"><span className='b'>Working hours</span>{": " + shop.workinghoursfrom+"-"+shop.workinghoursto}</p>
                     <button onClick={() => onBook(shop._id)} style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Book</button>
                     <button data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => onViewPrices(shop._id)} style={{ borderRadius: "0.375rem" }} className="price-btn btn btn-primary mx-2">View Prices</button>
                 </div>
