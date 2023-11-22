@@ -7,6 +7,13 @@ const AppointmentState = (props) => {
     const [appointmentId, setAppointmentId] = useState("")
     const [added, setAdded] = useState([])
     const [total, setTotal] = useState(0)
+    const setPrice=(value)=>
+    {
+        setTotal(value)
+    }
+    const setSelectedServices=(value)=>{
+        setAdded(value)
+    }
     const addService = (service, price) => {
         if (!added.includes(service)) {
             setAdded(added.concat(service))
@@ -110,7 +117,7 @@ const AppointmentState = (props) => {
 
 
     return (
-        <AppointmentContext.Provider value={{ reviewAppointment2, removeService, total, addService, added, shopId, appointmentId, deleteAppointment, setAppId, appointments, setId, addAppointment, getAppointments, editAppointment }}>
+        <AppointmentContext.Provider value={{ setSelectedServices,setPrice,reviewAppointment2, removeService, total, addService, added, shopId, appointmentId, deleteAppointment, setAppId, appointments, setId, addAppointment, getAppointments, editAppointment }}>
             {props.children}
         </AppointmentContext.Provider>
     )

@@ -81,7 +81,7 @@ const BookingDetails = ({ id }) => {
         servicetype: ""
     })
     const context = useContext(AppointmentContext)
-    const { addAppointment, added, total } = context
+    const { addAppointment, added, total,setPrice,setSelectedServices } = context
     /*const navigate = useNavigate();*/
     /*const handleClick = () => {
         navigate("/barberhome");
@@ -137,6 +137,10 @@ const BookingDetails = ({ id }) => {
 
         }
         onSearch()
+        return (()=>{
+            setPrice(0)
+            setSelectedServices([])
+        })
     }, [])
     return (
         <>

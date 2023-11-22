@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "/Users/aman/doormonk/src/components/ShopItem.css"
 
 const AppointmentItem = ({ appointment }) => {
     
+    const markStatus=async(id,status)=>{
+        const response = await fetch("http://localhost:5000/api/shops/completed", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem("token")
+            },
+            body:JSON.stringify({id:id,status:status},)
+        });
+        console.log("Completing an appointment")
+        const appointment = response.json()
+        console.log(appointment)
+        alert("Status Updated")
+        window.location.reload()
+        
+    }
+    useEffect(()=>{
+
+    })
     return (
         <>
             <div style={{ textAlign: "left" }} className="card my-3">
@@ -16,10 +35,11 @@ const AppointmentItem = ({ appointment }) => {
                     }} className="card-text"><span className='b'>Booking Status</span>{": " + appointment.status}</p>
                     <p className="card-text"><span className='b'>Address</span>{": " + appointment.address}</p>
                     <p className="card-text"><span className='b'>Services</span>{": " + appointment.services}</p>
+                    <p className="card-text"><span className='b'>Total</span>{": " + appointment.total}</p>
                     <p className="card-text"><span className='b'>Phone</span>{": " + appointment.phone}</p>
                     <p className="card-text"><span className='b'>Email</span>{": " + appointment.email}</p>
 
-                    <p className="card-text"><span className='b'>Slot Date</span>{": " + appointment.date}</p>
+                    <p className="card-text"><span className='b'>Slot Date</span>{": " + new Date(appointment.date).toLocaleDateString()}</p>
                     <p className="card-text"><span className='b'>Slot Time</span>{": " + appointment.time}</p>
                     <p className="card-text"><span className='b'>Unique Booking Id</span>{": " + appointment.bookingid}</p>
                     <p className="card-text"><span className='b'>Barber's Name</span>{": " + appointment.barbername}</p>
@@ -28,7 +48,8 @@ const AppointmentItem = ({ appointment }) => {
                     <p className="card-text"><span className='b'>Barber's Email</span>{": " + appointment.barberemail}</p>
                     <p className="card-text"><span className='b'>Barber's Address</span>{": " + appointment.barberaddress}</p>
                     <p className="card-text"><span className='b'>Service Type</span>{": " + appointment.servicetype}</p>
-
+                    {appointment.status==="Pending"&&<><button onClick={() => markStatus(appointment._id,"Completed")}  style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary ">Mark Completed</button>
+                    <button onClick={() => markStatus(appointment._id,"Canceled")}  style={{ borderRadius: "0.375rem" }} className="book-btn btn btn-primary mx-2 ">Cancel</button></>}
 
                     
 

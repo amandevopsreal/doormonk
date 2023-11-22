@@ -85,6 +85,7 @@ const Appointment = ({ appointment, updateAppointment, reviewAppointment }) => {
                     }} className="card-text"><span className='b'>Booking Status</span>{": " + appointment.status}</p>
                     <p className="card-text"><span className='b'>Address</span>{": " + appointment.address}</p>
                     <p className="card-text"><span className='b'>Services</span>{": " + appointment.services}</p>
+                    <p className="card-text"><span className='b'>Total</span>{": " + appointment.total}</p>
                     <p className="card-text"><span className='b'>Phone</span>{": " + appointment.phone}</p>
                     <p className="card-text"><span className='b'>Email</span>{": " + appointment.email}</p>
 

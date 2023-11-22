@@ -12,6 +12,12 @@ const Dashboard = () => {
         })
     }
     const onEdit = async () => {
+        if(!user.email||!user.name)
+        {
+            alert("Fields cannot be empty")
+            window.location.reload();
+            return
+        }
         await fetch(`http://localhost:5000/api/auth/updateuser`, {
             method: "PUT",
             headers: {
@@ -37,24 +43,7 @@ const Dashboard = () => {
     }, [])
     return (
         <>
-            {/*<article class="br3 shadow-5 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw5 center">
-                <div className="box">
-                    <div className="outdiv">
-                        <h2>Account Details</h2>
-                        <div className="inputBox">
-                            <input value={user.name} type="text" required="required" id="name" name='name' onChange={onChange} />
-                            <span>Name</span>
-                            <i></i>
-                        </div>
-                        <div className="inputBox">
-                            <input type="text" required="required" id="email" name='email' onChange={onChange} />
-                            <span>E-mail</span>
-                            <i></i>
-                        </div>
-                        <input onClick={onEdit} type="submit" value="Edit" />
-                    </div>
-                </div>
-    </article>*/}
+            
             <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
             <main className="pa4 black-80">
                 <div className="measure">
