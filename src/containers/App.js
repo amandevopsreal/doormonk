@@ -20,8 +20,9 @@ import BookingDetails from "../components/BookingDetails";
 import AppointmentState from "../context/AppointmentState";
 import MyAppointments from "../components/MyAppointments";
 import Reviews from "../barbercomps/Reviews";
-import AppointmentsB from "../barbercomps/AppointmentsB";
+//import AppointmentsB from "../barbercomps/AppointmentsB";
 import Dashboard from "../components/Dashboard";
+import Bookingbyday from "../barbercomps/Bookingbyday";
 import {
     BrowserRouter as Router,
     Routes,
@@ -113,7 +114,7 @@ class App extends Component {
                                         <Reviews /></>} />
                                         <Route path='/pendingappointments' element={<>
                                         <NavigationBhome />
-                                        <AppointmentsB /></>} />
+                                        <Bookingbyday/></>} />
                                         <Route path='/dashboard' element={<>
                                         <NavigationCS />
                                         <Dashboard /></>} />
