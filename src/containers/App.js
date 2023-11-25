@@ -20,9 +20,11 @@ import BookingDetails from "../components/BookingDetails";
 import AppointmentState from "../context/AppointmentState";
 import MyAppointments from "../components/MyAppointments";
 import Reviews from "../barbercomps/Reviews";
-//import AppointmentsB from "../barbercomps/AppointmentsB";
+import AppointmentsB from "../barbercomps/AppointmentsB";
 import Dashboard from "../components/Dashboard";
 import Bookingbyday from "../barbercomps/Bookingbyday";
+import NavigationLBT from "../components/Navigation/NavigationLBT";
+import DashboardB from "../barbercomps/DashboardB";
 import {
     BrowserRouter as Router,
     Routes,
@@ -113,11 +115,17 @@ class App extends Component {
                                         <NavigationBhome />
                                         <Reviews /></>} />
                                         <Route path='/pendingappointments' element={<>
-                                        <NavigationBhome />
+                                        <NavigationLBT />
                                         <Bookingbyday/></>} />
                                         <Route path='/dashboard' element={<>
                                         <NavigationCS />
                                         <Dashboard /></>} />
+                                        <Route path='/bookingtracker' element={<>
+                                        <NavigationBhome />
+                                        <AppointmentsB /></>} />
+                                        <Route path='/dashboardb' element={<>
+                                        <NavigationBhome />
+                                        <DashboardB /></>} />
 
                                 </Routes>
 
