@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import "/Users/aman/doormonk/src/components/ShopItem.css"
+import "../components/ShopItem.css"
+
 
 const AppointmentItem2 = ({ appointment }) => {
     
