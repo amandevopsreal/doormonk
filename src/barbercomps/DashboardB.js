@@ -101,7 +101,7 @@ const DashboardB = () => {
                         <div className="row g-3">
                             <div className="col-md-6">
                                 <label htmlFor="name" className="d-flex form-label text-light">Salon Name</label>
-                                <input onChange={onChange} type="text" className="form-control" id="name" name='name' />
+                                <input  onChange={onChange} type="text" className="form-control" id="name" name='name' />
                             </div>
                             <div className="col-md-6">
                                 <label htmlFor="phone" className="d-flex form-label text-light">Phone</label>
