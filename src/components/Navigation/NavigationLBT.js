@@ -22,8 +22,8 @@ const NavigationLBT = () => {
             <div className="navbar">
                 <div className="logo"><Link to="/" >DoormonK</Link></div>
                 <ul className="links">
-                    <li><Link to="/">Customer's Portal</Link></li>
-                    <li><Link to="/barberlogin">Log in/ Sign up</Link></li>
+                    <li><Link to="/dashboardb">Shop Details</Link></li>
+                    <li><Link to="/barberlogin">Log out</Link></li>
                     <li><Link to="/bookingtracker">Booking Tracker</Link></li>
                 </ul>
                 <div className="toggle_btn" onClick={fun}>
@@ -32,8 +32,8 @@ const NavigationLBT = () => {
 
             </div>
             <div className="dropdown_menu">
-                <li><Link to="/">Customer's Portal</Link></li>
-                <li><Link to="/barberlogin">Log in/ Sign up</Link></li>
+                <li><Link to="/dashboardb">Shop Details</Link></li>
+                <li><Link to="/barberlogin">Log out</Link></li>
                 <li><Link to="/bookingtracker">Booking Tracker</Link></li>
             </div>
         </header>

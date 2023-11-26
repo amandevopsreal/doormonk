@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import AppointmentItem from './AppointmentItem'
+import AppointmentItem2 from './AppointmentItem2'
 const Bookingbyday = () => {
     const onDateChange=async(e)=>{
         const response = await fetch("https://doormonk-mongo.onrender.com/api/shops/fetchappbyday", {
@@ -33,13 +33,18 @@ const Bookingbyday = () => {
                         <div className="input-group mb-3">
                             <input className="form-control" type="time" id="appt" name="appt"></input>
                             <input onChange={onDateChange} className="form-control" type="date" id="birthday" name="birthday"></input>
+                            
+                        </div>
+                        <div className="input-group mb-3">
+                            <button className="form-control" >Confirm All</button>
+                            <button className="form-control" >Cancel All</button>
                         </div>
                     </div>
                 </div>
                 <div className='mad center'>
                     <div style={{ width: "700px" }}>
                         {appointments.length ? appointments.map((appointment, i) => {
-                            return <><AppointmentItem key={i} appointment={appointment} /></>
+                            return <><AppointmentItem2 key={i} appointment={appointment} /></>
                         })
                             : <h2 style={{ color: "white" }}>No Bookings available</h2>}
                     </div>
