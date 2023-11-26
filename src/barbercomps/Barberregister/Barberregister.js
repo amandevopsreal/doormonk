@@ -36,11 +36,13 @@ const Barberregister = () => {
     const handleClick = () => {
         navigate("/barberhome");
     }
+    const url="https://doormonk-mongo.onrender.com"
     const handelSubmit = async () => {
         const arr = selected.map(item => {
             return item.value
         })
-        const response = await fetch("http://localhost:5000/api/barberauth/createbarber", {
+
+        const response = await fetch(`${url}/api/barberauth/createbarber`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ ...barber, workingdays: arr, services: services })

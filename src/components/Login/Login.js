@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Login.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+const url="https://doormonk-mongo.onrender.com"
 const Login = ({ loadUser, onRouteChange }) => {
     const [signInEmail, setSignInEmail] = useState("");
     const [signInPassword, setSignInPassword] = useState("");
@@ -17,7 +17,7 @@ const Login = ({ loadUser, onRouteChange }) => {
         navigate("/home");
     }
     const onSubmitLogIn = async () => {
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch(`${url}/api/auth/login`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: signInEmail, password: signInPassword })

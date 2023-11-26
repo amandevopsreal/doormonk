@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AppointmentItem from './AppointmentItem'
 const Bookingbyday = () => {
     const onDateChange=async(e)=>{
-        const response = await fetch("http://localhost:5000/api/shops/fetchappbyday", {
+        const response = await fetch("https://doormonk-mongo.onrender.com/api/shops/fetchappbyday", {
             method: "post",
             headers: { "Content-Type": "application/json",
         "auth-token":localStorage.getItem("token") },

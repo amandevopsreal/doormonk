@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
-import "/Users/aman/doormonk/src/components/ShopItem.css"
+// import "src/components/ShopItem.css"
+import "../components/ShopItem.css"
 
 const AppointmentItem = ({ appointment }) => {
     
     const markStatus=async(id,status)=>{
-        const response = await fetch("http://localhost:5000/api/shops/completed", {
+        const response = await fetch("https://doormonk-mongo.onrender.com/api/shops/completed", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

@@ -17,8 +17,9 @@ const Barberlogin = () => {
     const handleClick = () => {
         navigate("/barberhome");
     }
+    const url="https://doormonk-mongo.onrender.com"
     const onSubmitLogIn = async () => {
-        const response = await fetch("http://localhost:5000/api/barberauth/loginbarber", {
+        const response = await fetch(`${url}/api/barberauth/loginbarber`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(barber)

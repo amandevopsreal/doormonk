@@ -6,8 +6,11 @@ const AppointmentsB = () => {
     const onChange=(e)=>{
         setBookingId(e.target.value)
     }
+    
+    
+
     const onSearch=async()=>{
-        const response = await fetch(`http://localhost:5000/api/shops/appointmentbyid`, {
+        const response = await fetch(`https://doormonk-mongo.onrender.com/api/shops/appointmentbyid`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
