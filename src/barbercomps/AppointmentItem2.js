@@ -5,7 +5,7 @@ import "../components/ShopItem.css"
 const AppointmentItem2 = ({ appointment }) => {
     
     const markStatus=async(id,status)=>{
-        const response = await fetch("http://localhost:5000/api/shops/completed", {
+        const response = await fetch("https://doormonk-mongo.onrender.com/api/shops/completed", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
