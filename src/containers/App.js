@@ -30,6 +30,7 @@ import {
     Routes,
     Route
 } from "react-router-dom";
+
 class App extends Component {
     constructor() {
         super();
@@ -48,8 +49,8 @@ class App extends Component {
 
     onSearchChange = (event) => {
         this.setState({ searchField: event.target.value });
-
     }
+
     loadUser = (data) => {
         this.setState({
             user: {
@@ -58,35 +59,30 @@ class App extends Component {
                 email: data.email,
                 joined: data.joined
             }
-        })
+        });
     }
-    render() {
 
-        const searchedServices = this.state.services.filter((service) => {
-            return service.service.toLowerCase().includes(this.state.searchField.toLowerCase());
-        })
-        const searchedFeatures = this.state.features.filter((feature) => {
-            return feature.service.toLowerCase().includes(this.state.searchField.toLowerCase());
-        })
+    render() {
+        const searchedServices = this.state.services.filter((service) =>
+            service.service.toLowerCase().includes(this.state.searchField.toLowerCase())
+        );
+        const searchedFeatures = this.state.features.filter((feature) =>
+            feature.service.toLowerCase().includes(this.state.searchField.toLowerCase())
+        );
+
         if (this.state.services.length === 0) {
-            return <h1>Loading</h1>
-        }
-        else {
+            return <h1>Loading</h1>;
+        } else {
             return (
                 <>
                     <AppointmentState>
                         <Router>
                             <div className="tc">
-
-
-
                                 <Routes>
-                                    <Route path='/' element={<><Navigation />
-                                        <Login loadUser={this.loadUser} /></>} />
-                                    <Route path='/signin' element={<><Navigation /><Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange} /></>} />
+                                    <Route path='/' element={<><Navigation /><Login loadUser={this.loadUser} /></>} />
+                                    <Route path='/signin' element={<><Navigation /><Signup loadUser={this.loadUser} /></>} />
                                     <Route path='/barberlogin' element={<><NavigationBP /><Barberlogin /></>} />
                                     <Route path='/barberregister' element={<><NavigationBP /><Barberregister /></>} />
-
 
                                     <Route path='/home' element={<>
                                         <NavigationCS />
@@ -95,6 +91,7 @@ class App extends Component {
                                         <ErrorBoundary>
                                             <ServiceList services={searchedServices} />
                                         </ErrorBoundary></>} />
+
                                     <Route path='/barberhome' element={<>
                                         <NavigationBhome />
                                         <Logo />
@@ -102,40 +99,36 @@ class App extends Component {
                                         <ErrorBoundary>
                                             <ServiceList services={searchedFeatures} />
                                         </ErrorBoundary></>} />
-                                    <Route path='/searchshops' element={<>
-                                        <NavigationCS />
-                                        <Shops /></>} />
-                                    <Route path='/bookingdetails' element={<>
-                                        <NavigationCS />
-                                        <BookingDetails /></>} />
-                                    <Route path='/bookedappointments' element={<>
-                                        <NavigationCS />
-                                        <MyAppointments /></>} />
-                                    <Route path='/reviews' element={<>
-                                        <NavigationBhome />
-                                        <Reviews /></>} />
-                                        <Route path='/pendingappointments' element={<>
-                                        <NavigationLBT />
-                                        <Bookingbyday/></>} />
-                                        <Route path='/dashboard' element={<>
-                                        <NavigationCS />
-                                        <Dashboard /></>} />
-                                        <Route path='/bookingtracker' element={<>
-                                        <NavigationBhome />
-                                        <AppointmentsB /></>} />
-                                        <Route path='/dashboardb' element={<>
-                                        <NavigationBhome />
-                                        <DashboardB /></>} />
 
+                                    <Route path='/searchshops' element={<><NavigationCS /><Shops /></>} />
+                                    <Route path='/bookingdetails' element={<><NavigationCS /><BookingDetails /></>} />
+                                    <Route path='/bookedappointments' element={<><NavigationCS /><MyAppointments /></>} />
+                                    <Route path='/reviews' element={<><NavigationBhome /><Reviews /></>} />
+                                    <Route path='/pendingappointments' element={<><NavigationLBT /><Bookingbyday /></>} />
+                                    <Route path='/dashboard' element={<><NavigationCS /><Dashboard /></>} />
+                                    <Route path='/bookingtracker' element={<><NavigationBhome /><AppointmentsB /></>} />
+                                    <Route path='/dashboardb' element={<><NavigationBhome /><DashboardB /></>} />
+
+                                    <Route path='/test' element={
+                                        <div style={{
+                                            display: 'flex',
+                                            height: '100vh',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            flexDirection: 'column'
+                                        }}>
+                                            <h1>✅ Test Route Working!</h1>
+                                            <p>Your deployment and routing setup is correct.</p>
+                                            <p>Now you can safely add your real components.</p>
+                                        </div>
+                                    } />
                                 </Routes>
-
-                            </div >
+                            </div>
                         </Router>
                     </AppointmentState>
                 </>
             );
         }
-
     }
 }
 
